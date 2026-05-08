@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <title>Carlos Gálvez | Ingeniero de Tecnologías de la Información</title>
+    <style>
+        /* PDF / impresión: conservar diseño cercano a la vista web */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 12mm;
+            }
+
+            html {
+                font-size: 11pt;
+            }
+
+            body {
+                background: #f8f6f6 !important;
+                color: #0f172a !important;
+            }
+
+            /* Quitar sticky/blur; fondo sólido como en web claro */
+            header {
+                position: static !important;
+                z-index: auto !important;
+                background: #f8f6f6 !important;
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+                border-bottom: 1px solid rgba(236, 91, 19, 0.12) !important;
+                padding-top: 0.75rem !important;
+                padding-bottom: 0.75rem !important;
+                page-break-after: avoid;
+            }
+
+            header nav {
+                display: none !important;
+            }
+
+            /* Contenedor principal: sin recortes raros */
+            .layout-container,
+            body > div {
+                overflow: visible !important;
+                min-height: 0 !important;
+            }
+
+            main > div {
+                max-width: 100% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
+
+            /* Hero: dos columnas como en desktop */
+            main section:first-of-type {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 2rem !important;
+                margin-bottom: 2rem !important;
+                page-break-inside: avoid;
+            }
+
+            main section:first-of-type > div:first-child {
+                flex: 0 0 42% !important;
+                max-width: 280px !important;
+                aspect-ratio: 1 !important;
+                box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.15) !important;
+            }
+
+            main section:first-of-type > div:last-child {
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+            }
+
+            main section:first-of-type h1 {
+                font-size: 2rem !important;
+                line-height: 1.1 !important;
+            }
+
+            /* Secciones: menos aire vertical; evitar cortes dentro de bloques */
+            main section {
+                scroll-margin-top: 0 !important;
+            }
+
+            main section:not(:first-of-type) {
+                margin-bottom: 1.75rem !important;
+            }
+
+            #about .grid,
+            #skills .grid > div,
+            #experience .relative.pl-14 > div.bg-white,
+            #experience .relative.pl-14 > div[class*="rounded-2xl"] {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* Skills: 3 columnas (A4 vertical legible) */
+            #skills .grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                gap: 0.75rem !important;
+            }
+
+            #skills .grid > div {
+                padding: 1rem !important;
+            }
+
+            #skills .grid .size-16 {
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+
+            /* Tarjetas de experiencia */
+            #experience .space-y-8 > div {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* Footer oscuro como en web */
+            footer {
+                background: #0f172a !important;
+                color: #fff !important;
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+                margin-top: 1rem !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            footer .text-slate-500 {
+                color: rgba(148, 163, 184, 0.95) !important;
+            }
+
+            footer a {
+                color: #fff !important;
+            }
+
+            /* Enlaces: color legible en impresión */
+            a[href^="#"] {
+                color: inherit !important;
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <header
+                class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-4">
+                <div class="flex items-center justify-between max-w-[1200px] mx-auto">
+                    <div class="flex items-center gap-3 text-primary">
+                        <div class="size-8 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">code</span>
+                        </div>
+                        <h2
+                            class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">
+                            Carlos Gálvez</h2>
+                    </div>
+                    <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
+                        <nav class="flex items-center gap-8">
+                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                                href="#about">Sobre mí</a>
+                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                                href="#skills">Habilidades</a>
+                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                                href="#experience">Experiencia Laboral</a>
+                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                                href="#portfolio">Portafolio</a>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1">
+                <div class="max-w-[1200px] mx-auto px-6 md:px-20 lg:px-40 py-12">
+                    <!-- Hero Section -->
+                    <section class="flex flex-col lg:flex-row gap-12 items-center mb-24">
+                        <div
+                            class="w-full lg:w-1/2 aspect-square max-w-[500px] bg-primary/10 rounded-3xl overflow-hidden shadow-2xl relative">
+                            <div class="absolute inset-0 bg-cover bg-center"
+                                data-alt="Professional portrait of a software engineer smiling"
+                                style="background-image: url('');">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/40 to-transparent"></div>
+                        </div>
+                        <div class="w-full lg:w-1/2 flex flex-col gap-8">
+                            <div class="flex flex-col gap-4">
+                                <span class="text-primary font-bold tracking-widest uppercase text-sm">Tecnologias de la Información</span>
+                                <h1
+                                    class="text-slate-900 dark:text-slate-100 text-5xl md:text-6xl font-black leading-tight tracking-[-0.033em]">
+                                    Carlos Alberto Gálvez Chávez
+                                </h1>
+                                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl">
+                                    Apasionado por estudiar y aprender cosas nuevas, integrando las nuevas tecnologías como la IA para los desarrollos mas rapidos, precisos y que se entienda de mejor manera los procesos 
+                                    empresariales, tecnlogicos, retails, etc.
+                                    
+                                </p>
+                            </div>
+                        
+                        </div>
+                    </section>
+                    <!-- About Me -->
+                    <section class="mb-24 scroll-mt-28" id="about">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="h-px flex-1 bg-primary/20"></div>
+                            <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold px-4">Sobre mí</h2>
+                            <div class="h-px flex-1 bg-primary/20"></div>
+                        </div>
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white dark:bg-background-dark/50 p-8 md:p-12 rounded-3xl border border-primary/5 shadow-sm">
+                            <div class="space-y-4">
+                                <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                                    Soy un ingeniero de tecnologías de la información con una fuerte base en ciencias de la computación y
+                                    experiencia en desarrollo full-stack. Me desempeño bien en entornos colaborativos
+                                    entornos y siempre estoy ansioso por aprender nuevas tecnologías.
+                                </p>
+                                <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+                                    Mi enfoque combina rigor técnico con una mentalidad centrada en el usuario, asegurando que
+                                    cada línea de código contribuya a una experiencia digital fluida.
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="p-4 rounded-2xl bg-primary/5 border border-primary/10">
+                                    <div class="text-primary font-bold text-3xl mb-1">7+</div>
+                                    <div
+                                        class="text-slate-500 dark:text-slate-400 text-sm uppercase tracking-wider font-semibold">
+                                        Años de Experiencia</div>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-primary/5 border border-primary/10">
+                                    <div class="text-primary font-bold text-3xl mb-1">10+</div>
+                                    <div
+                                        class="text-slate-500 dark:text-slate-400 text-sm uppercase tracking-wider font-semibold">
+                                        Proyectos Completados</div>
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Programming Languages -->
+                    <section class="mb-24 scroll-mt-28" id="skills">
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10 text-center">Lenguajes de Programación</h2>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                            <!-- Python -->
+                            <div
+                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                <div
+                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl">deployed_code</span>
+                                </div>
+                                <span class="font-bold text-lg">.NET</span>
+                                <div
+                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                                    <div class="h-full bg-primary w-[60%]"></div>
+                                </div>
+                            </div>
+                            <!-- JavaScript -->
+                            <div
+                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                <div
+                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl">javascript</span>
+                                </div>
+                                <span class="font-bold text-lg">JavaScript</span>
+                                <div
+                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                                    <div class="h-full bg-primary w-[45%]"></div>
+                                </div>
+                            </div>
+                            <!-- Java -->
+                            <div
+                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                <div
+                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl">coffee</span>
+                                </div>
+                                <span class="font-bold text-lg">Java</span>
+                                <div
+                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                                    <div class="h-full bg-primary w-[15%]"></div>
+                                </div>
+                            </div>
+                            <!-- C++
+                            <div
+                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                <div
+                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-4xl">settings_ethernet</span>
+                                </div>
+                                <span class="font-bold text-lg">C++</span>
+                                <div
+                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                                    <div class="h-full bg-primary w-[80%]"></div>
+                                </div>
+                            </div> -->
+
+                             <!-- SQL-->
+                             <div
+                             class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                             <div
+                                 class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                 <span class="material-symbols-outlined text-4xl">settings_ethernet</span>
+                             </div>
+                             <span class="font-bold text-lg">SQL</span>
+                             <div
+                                 class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                                 <div class="h-full bg-primary w-[60%]"></div>
+                             </div>
+                         </div>
+
+                         <!-- Android-->
+                         <div
+                         class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                         <div
+                             class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                             <span class="material-symbols-outlined text-4xl">android</span>
+                         </div>
+                         <span class="font-bold text-lg">Android</span>
+                         <div
+                             class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                             <div class="h-full bg-primary w-[20%]"></div>
+                         </div>
+
+                        </div>
+
+
+                         <!-- Angular-->
+                         <div
+                         class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                         <div
+                             class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                             <span class="material-symbols-outlined text-4xl">hdr_auto</span>
+                         </div>
+                         <span class="font-bold text-lg">Angular</span>
+                         <div
+                             class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
+                             <div class="h-full bg-primary w-[20%]"></div>
+                         </div>
+
+                        </div>
+                    </section>
+
+
+                    <!-- Work Experience / Experiencia Laboral -->
+                    <section class="mb-24 scroll-mt-28" id="experience">
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10">Experiencia Laboral</h2>
+                        <div
+                            class="space-y-8 relative before:content-[''] before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-0.5 before:bg-primary/20">
+                            <!-- Senior Developer -->
+                            <div class="relative pl-14">
+                                <div
+                                    class="absolute left-0 top-1 size-10 rounded-full bg-primary border-4 border-background-light dark:border-background-dark flex items-center justify-center z-10 shadow-lg">
+                                    <span class="material-symbols-outlined text-white text-xl">work</span>
+                                </div>
+                                <div
+                                    class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Desarrollador Senior</h3>
+                                            <p class="text-primary font-semibold">Impulsora Elizondo</p>
+                                        </div>
+                                        <div
+                                            class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                                            Octubre 2025 - Presente
+                                        </div>
+                                    </div>
+                                    <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2">
+                                        <li>Liderazgo técnico del equipo de desarrollo: priorización, revisión de código y alineación con objetivos de negocio.</li>
+                                        <li>Diseño, mantenimiento y optimización de bases de datos Microsoft SQL Server (consultas, índices y rendimiento).</li>
+                                        <li>Desarrollo y evolución del canal de ecommerce en .NET Core sobre la plataforma NopCommerce.</li>
+                                        <li>Integración de sistemas externos (proveedores, servicios) con aplicaciones y procesos internos.</li>
+                                        <li>Diseño e implementación de APIs REST para consumo interno y comunicación entre sistemas.</li>
+                                        <li>Definición y ejecución de pruebas unitarias y de integración en el ciclo de entrega.</li>
+                                        <li>Levantamiento de requerimientos, análisis funcional y acompañamiento a áreas usuarias.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Software Engineer -->
+                            <div class="relative pl-14">
+                                <div
+                                    class="absolute left-0 top-1 size-10 rounded-full bg-primary/40 border-4 border-background-light dark:border-background-dark flex items-center justify-center z-10">
+                                    <span class="material-symbols-outlined text-white text-xl">computer</span>
+                                </div>
+                                <div
+                                    class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Desarrollador Core Sr.</h3>
+                                            <p class="text-primary font-semibold">Banco Bancrea</p>
+                                        </div>
+                                        <div
+                                            class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                                            Diciembre 2022 - Octubre 2025
+                                        </div>
+                                    </div>
+                                    <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2">
+                                        <li>Desarrollo full stack de aplicaciones web corporativas con Angular y .NET Core.</li>
+                                        <li>Integración de sistemas internos del banco con servicios y plataformas de terceros.</li>
+                                        <li>Soporte técnico de niveles 1 y 2 a usuarios internos y coordinación con proveedores tecnológicos.</li>
+                                        <li>Implementación de web services y contratos para interoperabilidad con sistemas externos.</li>
+                                        <li>Facilitación de pruebas de aceptación y validación funcional con usuarios de negocio.</li>
+                                        <li>Modelado de datos, consultas y administración en Microsoft SQL Server.</li>
+                                        <li>Coordinación de equipos de trabajo y seguimiento de entregas e hitos.</li>
+                                        <li>Liderazgo técnico de proyectos: planificación, asignación de tareas y seguimiento al cierre.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                             <!-- Software Engineer -->
+                             <div class="relative pl-14">
+                                <div
+                                    class="absolute left-0 top-1 size-10 rounded-full bg-primary/40 border-4 border-background-light dark:border-background-dark flex items-center justify-center z-10">
+                                    <span class="material-symbols-outlined text-white text-xl">developer_guide</span>
+                                </div>
+                                <div
+                                    class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Programador Analista</h3>
+                                            <p class="text-primary font-semibold">Impulsora Elizondo</p>
+                                        </div>
+                                        <div
+                                            class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                                            Abril 2018 - Diciembre 2022
+                                        </div>
+                                    </div>
+                                    <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2">
+                                        <li>Documentación técnica y funcional de procesos y soluciones de software para equipos y usuarios.</li>
+                                        <li>Integración del ecommerce con pasarelas y medios de pago, asegurando trazabilidad y conciliación.</li>
+                                        <li>Sincronización del canal online con el ERP interno (inventarios, pedidos y catálogos).</li>
+                                        <li>Administración y optimización de bases de datos SQL Server y MongoDB en entornos productivos.</li>
+                                        <li>Soporte técnico de primer a tercer nivel a clientes finales y áreas internas de la organización.</li>
+                                        <li>Desarrollo de APIs REST para integración con socios comerciales y sistemas externos.</li>
+                                        <li>Diseño y ejecución de pruebas unitarias y de integración antes de despliegues a producción.</li>
+                                        <li>Levantamiento de requerimientos, análisis de necesidades y traducción a especificaciones técnicas.</li>
+                                        <li>Operación y mantenimiento de servidores, bases de datos e infraestructura de red.</li>
+                                        <li>Aplicación de buenas prácticas y controles en seguridad informática alineados a la política corporativa.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <!-- Footer -->
+            <footer class="bg-slate-900 dark:bg-background-dark/80 text-white py-12">
+                <div
+                    class="max-w-[1200px] mx-auto px-6 md:px-20 lg:px-40 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="size-8 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-3xl">code</span>
+                        </div>
+                        <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Carlos Gálvez</h2>
+                    </div>
+                    <div class="flex gap-6">
+                        <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+                        <a class="hover:text-primary transition-colors" href="#">GitHub</a>
+                        <a class="hover:text-primary transition-colors" href="#">Twitter</a>
+                    </div>
+                    <p class="text-slate-500 text-sm">© 2026 Carlos Gálvez. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
