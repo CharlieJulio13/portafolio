@@ -32,9 +32,9 @@
             },
         }
     </script>
-    <title>Carlos Gálvez | Ingeniero de Tecnologías de la Información</title>
+    <title data-i18n="page_title">Carlos Gálvez | Information Technology Engineer</title>
     <style>
-        /* PDF / impresión: conservar diseño cercano a la vista web */
+            /* PDF / print: keep layout close to web view */
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -55,7 +55,7 @@
                 color: #0f172a !important;
             }
 
-            /* Quitar sticky/blur; fondo sólido como en web claro */
+            /* Remove sticky/blur; solid background as in light web */
             header {
                 position: static !important;
                 z-index: auto !important;
@@ -72,7 +72,7 @@
                 display: none !important;
             }
 
-            /* Contenedor principal: sin recortes raros */
+            /* Main container: avoid odd clipping */
             .layout-container,
             body > div {
                 overflow: visible !important;
@@ -87,7 +87,7 @@
                 padding-bottom: 1.5rem !important;
             }
 
-            /* Hero: dos columnas como en desktop */
+            /* Hero: two columns like desktop */
             main section:first-of-type {
                 display: flex !important;
                 flex-direction: row !important;
@@ -114,7 +114,7 @@
                 line-height: 1.1 !important;
             }
 
-            /* Secciones: menos aire vertical; evitar cortes dentro de bloques */
+            /* Sections: tighter spacing and avoid splitting blocks */
             main section {
                 scroll-margin-top: 0 !important;
             }
@@ -131,7 +131,7 @@
                 page-break-inside: avoid;
             }
 
-            /* Skills: 3 columnas (A4 vertical legible) */
+            /* Skills: 3 columns (readable on A4 portrait) */
             #skills .grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
                 gap: 0.75rem !important;
@@ -146,13 +146,13 @@
                 height: 3rem !important;
             }
 
-            /* Tarjetas de experiencia */
+            /* Experience cards */
             #experience .space-y-8 > div {
                 break-inside: avoid;
                 page-break-inside: avoid;
             }
 
-            /* Footer oscuro como en web */
+            /* Dark footer as in web */
             footer {
                 background: #0f172a !important;
                 color: #fff !important;
@@ -171,7 +171,7 @@
                 color: #fff !important;
             }
 
-            /* Enlaces: color legible en impresión */
+            /* Links: readable color on print */
             a[href^="#"] {
                 color: inherit !important;
                 text-decoration: none !important;
@@ -199,15 +199,20 @@
                     <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
                         <nav class="flex items-center gap-8">
                             <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#about">Sobre mí</a>
+                                href="#about" data-i18n="nav_about">About</a>
                             <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#skills">Habilidades</a>
+                                href="#skills" data-i18n="nav_skills">Skills</a>
                             <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#experience">Experiencia Laboral</a>
+                                href="#experience" data-i18n="nav_experience">Work Experience</a>
                             <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#portfolio">Portafolio</a>
+                                href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
                         </nav>
                     </div>
+                    <button id="language-toggle"
+                        class="rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold tracking-wide text-primary hover:bg-primary/10 transition-colors"
+                        type="button">
+                        ES
+                    </button>
                 </div>
             </header>
             <main class="flex-1">
@@ -224,15 +229,17 @@
                         </div>
                         <div class="w-full lg:w-1/2 flex flex-col gap-8">
                             <div class="flex flex-col gap-4">
-                                <span class="text-primary font-bold tracking-widest uppercase text-sm">Tecnologias de la Información</span>
+                                <span class="text-primary font-bold tracking-widest uppercase text-sm" data-i18n="hero_tag">
+                                    Information Technology
+                                </span>
                                 <h1
                                     class="text-slate-900 dark:text-slate-100 text-5xl md:text-6xl font-black leading-tight tracking-[-0.033em]">
                                     Carlos Alberto Gálvez Chávez
                                 </h1>
-                                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl">
-                                    Apasionado por estudiar y aprender cosas nuevas, integrando las nuevas tecnologías como la IA para los desarrollos mas rapidos, precisos y que se entienda de mejor manera los procesos 
-                                    empresariales, tecnlogicos, retails, etc.
-                                    
+                                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl" data-i18n="hero_description">
+                                    Passionate about continuous learning and integrating new technologies such as AI to
+                                    deliver faster and more accurate development, while making business, technology, and
+                                    retail processes easier to understand.
                                 </p>
                             </div>
                         
@@ -242,20 +249,20 @@
                     <section class="mb-24 scroll-mt-28" id="about">
                         <div class="flex items-center gap-4 mb-8">
                             <div class="h-px flex-1 bg-primary/20"></div>
-                            <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold px-4">Sobre mí</h2>
+                            <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold px-4" data-i18n="about_title">About Me</h2>
                             <div class="h-px flex-1 bg-primary/20"></div>
                         </div>
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white dark:bg-background-dark/50 p-8 md:p-12 rounded-3xl border border-primary/5 shadow-sm">
                             <div class="space-y-4">
-                                <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
-                                    Soy un ingeniero de tecnologías de la información con una fuerte base en ciencias de la computación y
-                                    experiencia en desarrollo full-stack. Me desempeño bien en entornos colaborativos
-                                    entornos y siempre estoy ansioso por aprender nuevas tecnologías.
+                                <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed" data-i18n="about_p1">
+                                    I am an Information Technology Engineer with a strong foundation in Computer Science and
+                                    full-stack development experience. I thrive in collaborative environments and I am always
+                                    eager to learn new technologies.
                                 </p>
-                                <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
-                                    Mi enfoque combina rigor técnico con una mentalidad centrada en el usuario, asegurando que
-                                    cada línea de código contribuya a una experiencia digital fluida.
+                                <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed" data-i18n="about_p2">
+                                    My approach combines technical rigor with a user-centered mindset, ensuring that each line
+                                    of code contributes to a seamless digital experience.
                                 </p>
                             </div>
                             <div class="grid grid-cols-2 gap-6">
@@ -263,13 +270,13 @@
                                     <div class="text-primary font-bold text-3xl mb-1">7+</div>
                                     <div
                                         class="text-slate-500 dark:text-slate-400 text-sm uppercase tracking-wider font-semibold">
-                                        Años de Experiencia</div>
+                                        <span data-i18n="about_years">Years of Experience</span></div>
                                 </div>
                                 <div class="p-4 rounded-2xl bg-primary/5 border border-primary/10">
                                     <div class="text-primary font-bold text-3xl mb-1">10+</div>
                                     <div
                                         class="text-slate-500 dark:text-slate-400 text-sm uppercase tracking-wider font-semibold">
-                                        Proyectos Completados</div>
+                                        <span data-i18n="about_projects">Completed Projects</span></div>
                                 </div>
                         
                             </div>
@@ -277,7 +284,7 @@
                     </section>
                     <!-- Programming Languages -->
                     <section class="mb-24 scroll-mt-28" id="skills">
-                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10 text-center">Lenguajes de Programación</h2>
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10 text-center" data-i18n="skills_title">Programming Languages</h2>
                         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                             <!-- Python -->
                             <div
@@ -379,9 +386,9 @@
                     </section>
 
 
-                    <!-- Work Experience / Experiencia Laboral -->
+                    <!-- Work Experience -->
                     <section class="mb-24 scroll-mt-28" id="experience">
-                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10">Experiencia Laboral</h2>
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10" data-i18n="experience_title">Work Experience</h2>
                         <div
                             class="space-y-8 relative before:content-[''] before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-0.5 before:bg-primary/20">
                             <!-- Senior Developer -->
@@ -394,22 +401,22 @@
                                     class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                         <div>
-                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Desarrollador Senior</h3>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="exp1_role">Senior Developer</h3>
                                             <p class="text-primary font-semibold">Impulsora Elizondo</p>
                                         </div>
                                         <div
                                             class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
-                                            Octubre 2025 - Presente
+                                            <span data-i18n="exp1_date">October 2025 - Present</span>
                                         </div>
                                     </div>
                                     <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2">
-                                        <li>Liderazgo técnico del equipo de desarrollo: priorización, revisión de código y alineación con objetivos de negocio.</li>
-                                        <li>Diseño, mantenimiento y optimización de bases de datos Microsoft SQL Server (consultas, índices y rendimiento).</li>
-                                        <li>Desarrollo y evolución del canal de ecommerce en .NET Core sobre la plataforma NopCommerce.</li>
-                                        <li>Integración de sistemas externos (proveedores, servicios) con aplicaciones y procesos internos.</li>
-                                        <li>Diseño e implementación de APIs REST para consumo interno y comunicación entre sistemas.</li>
-                                        <li>Definición y ejecución de pruebas unitarias y de integración en el ciclo de entrega.</li>
-                                        <li>Levantamiento de requerimientos, análisis funcional y acompañamiento a áreas usuarias.</li>
+                                        <li data-i18n="exp1_li1">Technical leadership of the development team, including prioritization, code review, and alignment with business goals.</li>
+                                        <li data-i18n="exp1_li2">Design, maintenance, and optimization of Microsoft SQL Server databases (queries, indexing, and performance).</li>
+                                        <li data-i18n="exp1_li3">Development and evolution of the ecommerce channel in .NET Core on the NopCommerce platform.</li>
+                                        <li data-i18n="exp1_li4">Integration of external systems (vendors and services) with internal applications and processes.</li>
+                                        <li data-i18n="exp1_li5">Design and implementation of REST APIs for internal consumption and inter-system communication.</li>
+                                        <li data-i18n="exp1_li6">Definition and execution of unit and integration tests throughout the delivery cycle.</li>
+                                        <li data-i18n="exp1_li7">Requirements gathering, functional analysis, and support for business users.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -423,23 +430,23 @@
                                     class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                         <div>
-                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Desarrollador Core Sr.</h3>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="exp2_role">Senior Core Developer</h3>
                                             <p class="text-primary font-semibold">Banco Bancrea</p>
                                         </div>
                                         <div
                                             class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
-                                            Diciembre 2022 - Octubre 2025
+                                            <span data-i18n="exp2_date">December 2022 - October 2025</span>
                                         </div>
                                     </div>
                                     <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2">
-                                        <li>Desarrollo full stack de aplicaciones web corporativas con Angular y .NET Core.</li>
-                                        <li>Integración de sistemas internos del banco con servicios y plataformas de terceros.</li>
-                                        <li>Soporte técnico de niveles 1 y 2 a usuarios internos y coordinación con proveedores tecnológicos.</li>
-                                        <li>Implementación de web services y contratos para interoperabilidad con sistemas externos.</li>
-                                        <li>Facilitación de pruebas de aceptación y validación funcional con usuarios de negocio.</li>
-                                        <li>Modelado de datos, consultas y administración en Microsoft SQL Server.</li>
-                                        <li>Coordinación de equipos de trabajo y seguimiento de entregas e hitos.</li>
-                                        <li>Liderazgo técnico de proyectos: planificación, asignación de tareas y seguimiento al cierre.</li>
+                                        <li data-i18n="exp2_li1">Full-stack development of enterprise web applications with Angular and .NET Core.</li>
+                                        <li data-i18n="exp2_li2">Integration of the bank's internal systems with third-party services and platforms.</li>
+                                        <li data-i18n="exp2_li3">Level 1 and Level 2 technical support for internal users and coordination with technology vendors.</li>
+                                        <li data-i18n="exp2_li4">Implementation of web services and contracts for interoperability with external systems.</li>
+                                        <li data-i18n="exp2_li5">Facilitation of user acceptance testing and functional validation with business teams.</li>
+                                        <li data-i18n="exp2_li6">Data modeling, querying, and administration in Microsoft SQL Server.</li>
+                                        <li data-i18n="exp2_li7">Team coordination and monitoring of deliveries and milestones.</li>
+                                        <li data-i18n="exp2_li8">Technical leadership of projects: planning, task assignment, and end-to-end follow-up.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -454,25 +461,25 @@
                                     class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                         <div>
-                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Programador Analista</h3>
+                                            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="exp3_role">Programmer Analyst</h3>
                                             <p class="text-primary font-semibold">Impulsora Elizondo</p>
                                         </div>
                                         <div
                                             class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
-                                            Abril 2018 - Diciembre 2022
+                                            <span data-i18n="exp3_date">April 2018 - December 2022</span>
                                         </div>
                                     </div>
                                     <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2">
-                                        <li>Documentación técnica y funcional de procesos y soluciones de software para equipos y usuarios.</li>
-                                        <li>Integración del ecommerce con pasarelas y medios de pago, asegurando trazabilidad y conciliación.</li>
-                                        <li>Sincronización del canal online con el ERP interno (inventarios, pedidos y catálogos).</li>
-                                        <li>Administración y optimización de bases de datos SQL Server y MongoDB en entornos productivos.</li>
-                                        <li>Soporte técnico de primer a tercer nivel a clientes finales y áreas internas de la organización.</li>
-                                        <li>Desarrollo de APIs REST para integración con socios comerciales y sistemas externos.</li>
-                                        <li>Diseño y ejecución de pruebas unitarias y de integración antes de despliegues a producción.</li>
-                                        <li>Levantamiento de requerimientos, análisis de necesidades y traducción a especificaciones técnicas.</li>
-                                        <li>Operación y mantenimiento de servidores, bases de datos e infraestructura de red.</li>
-                                        <li>Aplicación de buenas prácticas y controles en seguridad informática alineados a la política corporativa.</li>
+                                        <li data-i18n="exp3_li1">Technical and functional documentation of processes and software solutions for teams and users.</li>
+                                        <li data-i18n="exp3_li2">Ecommerce integration with payment gateways and methods, ensuring traceability and reconciliation.</li>
+                                        <li data-i18n="exp3_li3">Synchronization of the online channel with the internal ERP (inventory, orders, and catalogs).</li>
+                                        <li data-i18n="exp3_li4">Administration and optimization of SQL Server and MongoDB databases in production environments.</li>
+                                        <li data-i18n="exp3_li5">First- to third-level technical support for end customers and internal departments.</li>
+                                        <li data-i18n="exp3_li6">Development of REST APIs for integration with business partners and external systems.</li>
+                                        <li data-i18n="exp3_li7">Design and execution of unit and integration tests before production deployments.</li>
+                                        <li data-i18n="exp3_li8">Requirements gathering, needs analysis, and translation into technical specifications.</li>
+                                        <li data-i18n="exp3_li9">Operation and maintenance of servers, databases, and network infrastructure.</li>
+                                        <li data-i18n="exp3_li10">Implementation of cybersecurity best practices and controls aligned with corporate policy.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -495,11 +502,137 @@
                         <a class="hover:text-primary transition-colors" href="#">GitHub</a>
                         <a class="hover:text-primary transition-colors" href="#">Twitter</a>
                     </div>
-                    <p class="text-slate-500 text-sm">© 2026 Carlos Gálvez. Todos los derechos reservados.</p>
+                    <p class="text-slate-500 text-sm" data-i18n="footer_rights">© 2026 Carlos Gálvez. All rights reserved.</p>
                 </div>
             </footer>
         </div>
     </div>
+    <script>
+        const translations = {
+            en: {
+                page_title: "Carlos Gálvez | Information Technology Engineer",
+                nav_about: "About",
+                nav_skills: "Skills",
+                nav_experience: "Work Experience",
+                nav_portfolio: "Portfolio",
+                hero_tag: "Information Technology",
+                hero_description: "Passionate about continuous learning and integrating new technologies such as AI to deliver faster and more accurate development, while making business, technology, and retail processes easier to understand.",
+                about_title: "About Me",
+                about_p1: "I am an Information Technology Engineer with a strong foundation in Computer Science and full-stack development experience. I thrive in collaborative environments and I am always eager to learn new technologies.",
+                about_p2: "My approach combines technical rigor with a user-centered mindset, ensuring that each line of code contributes to a seamless digital experience.",
+                about_years: "Years of Experience",
+                about_projects: "Completed Projects",
+                skills_title: "Programming Languages",
+                experience_title: "Work Experience",
+                exp1_role: "Senior Developer",
+                exp1_date: "October 2025 - Present",
+                exp1_li1: "Technical leadership of the development team, including prioritization, code review, and alignment with business goals.",
+                exp1_li2: "Design, maintenance, and optimization of Microsoft SQL Server databases (queries, indexing, and performance).",
+                exp1_li3: "Development and evolution of the ecommerce channel in .NET Core on the NopCommerce platform.",
+                exp1_li4: "Integration of external systems (vendors and services) with internal applications and processes.",
+                exp1_li5: "Design and implementation of REST APIs for internal consumption and inter-system communication.",
+                exp1_li6: "Definition and execution of unit and integration tests throughout the delivery cycle.",
+                exp1_li7: "Requirements gathering, functional analysis, and support for business users.",
+                exp2_role: "Senior Core Developer",
+                exp2_date: "December 2022 - October 2025",
+                exp2_li1: "Full-stack development of enterprise web applications with Angular and .NET Core.",
+                exp2_li2: "Integration of the bank's internal systems with third-party services and platforms.",
+                exp2_li3: "Level 1 and Level 2 technical support for internal users and coordination with technology vendors.",
+                exp2_li4: "Implementation of web services and contracts for interoperability with external systems.",
+                exp2_li5: "Facilitation of user acceptance testing and functional validation with business teams.",
+                exp2_li6: "Data modeling, querying, and administration in Microsoft SQL Server.",
+                exp2_li7: "Team coordination and monitoring of deliveries and milestones.",
+                exp2_li8: "Technical leadership of projects: planning, task assignment, and end-to-end follow-up.",
+                exp3_role: "Programmer Analyst",
+                exp3_date: "April 2018 - December 2022",
+                exp3_li1: "Technical and functional documentation of processes and software solutions for teams and users.",
+                exp3_li2: "Ecommerce integration with payment gateways and methods, ensuring traceability and reconciliation.",
+                exp3_li3: "Synchronization of the online channel with the internal ERP (inventory, orders, and catalogs).",
+                exp3_li4: "Administration and optimization of SQL Server and MongoDB databases in production environments.",
+                exp3_li5: "First- to third-level technical support for end customers and internal departments.",
+                exp3_li6: "Development of REST APIs for integration with business partners and external systems.",
+                exp3_li7: "Design and execution of unit and integration tests before production deployments.",
+                exp3_li8: "Requirements gathering, needs analysis, and translation into technical specifications.",
+                exp3_li9: "Operation and maintenance of servers, databases, and network infrastructure.",
+                exp3_li10: "Implementation of cybersecurity best practices and controls aligned with corporate policy.",
+                footer_rights: "© 2026 Carlos Gálvez. All rights reserved."
+            },
+            es: {
+                page_title: "Carlos Gálvez | Ingeniero de Tecnologías de la Información",
+                nav_about: "Sobre mí",
+                nav_skills: "Habilidades",
+                nav_experience: "Experiencia Laboral",
+                nav_portfolio: "Portafolio",
+                hero_tag: "Tecnologías de la Información",
+                hero_description: "Apasionado por estudiar y aprender cosas nuevas, integrando nuevas tecnologías como la IA para desarrollos más rápidos y precisos, y para hacer más comprensibles los procesos empresariales, tecnológicos y de retail.",
+                about_title: "Sobre mí",
+                about_p1: "Soy un ingeniero de tecnologías de la información con una fuerte base en ciencias de la computación y experiencia en desarrollo full-stack. Me desempeño bien en entornos colaborativos y siempre estoy ansioso por aprender nuevas tecnologías.",
+                about_p2: "Mi enfoque combina rigor técnico con una mentalidad centrada en el usuario, asegurando que cada línea de código contribuya a una experiencia digital fluida.",
+                about_years: "Años de Experiencia",
+                about_projects: "Proyectos Completados",
+                skills_title: "Lenguajes de Programación",
+                experience_title: "Experiencia Laboral",
+                exp1_role: "Desarrollador Senior",
+                exp1_date: "Octubre 2025 - Presente",
+                exp1_li1: "Liderazgo técnico del equipo de desarrollo: priorización, revisión de código y alineación con objetivos de negocio.",
+                exp1_li2: "Diseño, mantenimiento y optimización de bases de datos Microsoft SQL Server (consultas, índices y rendimiento).",
+                exp1_li3: "Desarrollo y evolución del canal de ecommerce en .NET Core sobre la plataforma NopCommerce.",
+                exp1_li4: "Integración de sistemas externos (proveedores y servicios) con aplicaciones y procesos internos.",
+                exp1_li5: "Diseño e implementación de APIs REST para consumo interno y comunicación entre sistemas.",
+                exp1_li6: "Definición y ejecución de pruebas unitarias y de integración en el ciclo de entrega.",
+                exp1_li7: "Levantamiento de requerimientos, análisis funcional y acompañamiento a áreas usuarias.",
+                exp2_role: "Desarrollador Core Sr.",
+                exp2_date: "Diciembre 2022 - Octubre 2025",
+                exp2_li1: "Desarrollo full-stack de aplicaciones web corporativas con Angular y .NET Core.",
+                exp2_li2: "Integración de sistemas internos del banco con servicios y plataformas de terceros.",
+                exp2_li3: "Soporte técnico de niveles 1 y 2 a usuarios internos y coordinación con proveedores tecnológicos.",
+                exp2_li4: "Implementación de web services y contratos para interoperabilidad con sistemas externos.",
+                exp2_li5: "Facilitación de pruebas de aceptación y validación funcional con usuarios de negocio.",
+                exp2_li6: "Modelado de datos, consultas y administración en Microsoft SQL Server.",
+                exp2_li7: "Coordinación de equipos de trabajo y seguimiento de entregas e hitos.",
+                exp2_li8: "Liderazgo técnico de proyectos: planificación, asignación de tareas y seguimiento al cierre.",
+                exp3_role: "Programador Analista",
+                exp3_date: "Abril 2018 - Diciembre 2022",
+                exp3_li1: "Documentación técnica y funcional de procesos y soluciones de software para equipos y usuarios.",
+                exp3_li2: "Integración del ecommerce con pasarelas y medios de pago, asegurando trazabilidad y conciliación.",
+                exp3_li3: "Sincronización del canal online con el ERP interno (inventarios, pedidos y catálogos).",
+                exp3_li4: "Administración y optimización de bases de datos SQL Server y MongoDB en entornos productivos.",
+                exp3_li5: "Soporte técnico de primer a tercer nivel a clientes finales y áreas internas de la organización.",
+                exp3_li6: "Desarrollo de APIs REST para integración con socios comerciales y sistemas externos.",
+                exp3_li7: "Diseño y ejecución de pruebas unitarias y de integración antes de despliegues a producción.",
+                exp3_li8: "Levantamiento de requerimientos, análisis de necesidades y traducción a especificaciones técnicas.",
+                exp3_li9: "Operación y mantenimiento de servidores, bases de datos e infraestructura de red.",
+                exp3_li10: "Aplicación de buenas prácticas y controles en seguridad informática alineados a la política corporativa.",
+                footer_rights: "© 2026 Carlos Gálvez. Todos los derechos reservados."
+            }
+        };
+
+        const languageToggle = document.getElementById("language-toggle");
+        let currentLang = "en";
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            const dict = translations[lang];
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (dict[key]) {
+                    if (el.tagName === "TITLE") {
+                        document.title = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+
+            languageToggle.textContent = lang === "en" ? "ES" : "EN";
+        }
+
+        languageToggle.addEventListener("click", () => {
+            setLanguage(currentLang === "en" ? "es" : "en");
+        });
+    </script>
 </body>
 
 </html>
