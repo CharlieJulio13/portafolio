@@ -34,6 +34,14 @@
     </script>
     <title data-i18n="page_title">Carlos Gálvez | Information Technology Engineer</title>
     <style>
+        .print-only-contact {
+            display: none;
+        }
+
+        .screen-only-contact {
+            display: flex;
+        }
+
             /* PDF / print: keep layout close to web view */
         @media print {
             * {
@@ -176,6 +184,14 @@
                 color: inherit !important;
                 text-decoration: none !important;
             }
+
+            .print-only-contact {
+                display: block !important;
+            }
+
+            .screen-only-contact {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -241,8 +257,22 @@
                                     deliver faster and more accurate development, while making business, technology, and
                                     retail processes easier to understand.
                                 </p>
+                                <p class="print-only-contact text-slate-700 text-base font-semibold" data-i18n="hero_phone_pdf">
+                                    Contact phone: +52 8125150826
+                                </p>
                             </div>
-                        
+                            <div class="screen-only-contact flex-wrap items-center gap-3">
+                                <a class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white hover:opacity-90 transition-opacity"
+                                    href="tel:+528125150826" data-i18n="hero_call">
+                                    Call
+                                </a>
+                                <a class="inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm font-bold text-primary hover:bg-primary/10 transition-colors"
+                                    href="https://wa.me/528125150826" rel="noopener noreferrer" target="_blank"
+                                    data-i18n="hero_whatsapp">
+                                    WhatsApp
+                                </a>
+
+                            </div>
                         </div>
                     </section>
                     <!-- About Me -->
@@ -517,6 +547,10 @@
                 nav_portfolio: "Portfolio",
                 hero_tag: "Information Technology",
                 hero_description: "Passionate about continuous learning and integrating new technologies such as AI to deliver faster and more accurate development, while making business, technology, and retail processes easier to understand.",
+                hero_call: "Call",
+                hero_whatsapp: "WhatsApp",
+                hero_privacy_note: "Phone number is only visible in CV/PDF.",
+                hero_phone_pdf: "Contact phone: +52 8125150826",
                 about_title: "About Me",
                 about_p1: "I am an Information Technology Engineer with a strong foundation in Computer Science and full-stack development experience. I thrive in collaborative environments and I am always eager to learn new technologies.",
                 about_p2: "My approach combines technical rigor with a user-centered mindset, ensuring that each line of code contributes to a seamless digital experience.",
@@ -565,6 +599,10 @@
                 nav_portfolio: "Portafolio",
                 hero_tag: "Tecnologías de la Información",
                 hero_description: "Apasionado por estudiar y aprender cosas nuevas, integrando nuevas tecnologías como la IA para desarrollos más rápidos y precisos, y para hacer más comprensibles los procesos empresariales, tecnológicos y de retail.",
+                hero_call: "Llamar",
+                hero_whatsapp: "WhatsApp",
+                hero_privacy_note: "El número solo es visible en la versión CV/PDF.",
+                hero_phone_pdf: "Teléfono de contacto: +52 8125150826",
                 about_title: "Sobre mí",
                 about_p1: "Soy un ingeniero de tecnologías de la información con una fuerte base en ciencias de la computación y experiencia en desarrollo full-stack. Me desempeño bien en entornos colaborativos y siempre estoy ansioso por aprender nuevas tecnologías.",
                 about_p2: "Mi enfoque combina rigor técnico con una mentalidad centrada en el usuario, asegurando que cada línea de código contribuya a una experiencia digital fluida.",
