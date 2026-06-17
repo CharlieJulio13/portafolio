@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
+    <script>
+        (function () {
+            const stored = localStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            if (stored === "dark" || (!stored && prefersDark)) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -224,11 +233,19 @@
                                 href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
                         </nav>
                     </div>
-                    <button id="language-toggle"
-                        class="rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold tracking-wide text-primary hover:bg-primary/10 transition-colors"
-                        type="button">
-                        ES
-                    </button>
+                    <div class="flex items-center gap-2">
+                        <button id="theme-toggle"
+                            class="flex size-9 items-center justify-center rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
+                            type="button" aria-label="Switch to dark mode">
+                            <span class="material-symbols-outlined text-xl theme-icon-light">dark_mode</span>
+                            <span class="material-symbols-outlined text-xl theme-icon-dark hidden">light_mode</span>
+                        </button>
+                        <button id="language-toggle"
+                            class="rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold tracking-wide text-primary hover:bg-primary/10 transition-colors"
+                            type="button">
+                            ES
+                        </button>
+                    </div>
                 </div>
             </header>
             <main class="flex-1">
@@ -589,7 +606,9 @@
                 exp3_li8: "Requirements gathering, needs analysis, and translation into technical specifications.",
                 exp3_li9: "Operation and maintenance of servers, databases, and network infrastructure.",
                 exp3_li10: "Implementation of cybersecurity best practices and controls aligned with corporate policy.",
-                footer_rights: "© 2026 Carlos Gálvez. All rights reserved."
+                footer_rights: "© 2026 Carlos Gálvez. All rights reserved.",
+                theme_toggle_dark: "Switch to dark mode",
+                theme_toggle_light: "Switch to light mode"
             },
             es: {
                 page_title: "Carlos Gálvez | Ingeniero de Tecnologías de la Información",
@@ -641,12 +660,36 @@
                 exp3_li8: "Levantamiento de requerimientos, análisis de necesidades y traducción a especificaciones técnicas.",
                 exp3_li9: "Operación y mantenimiento de servidores, bases de datos e infraestructura de red.",
                 exp3_li10: "Aplicación de buenas prácticas y controles en seguridad informática alineados a la política corporativa.",
-                footer_rights: "© 2026 Carlos Gálvez. Todos los derechos reservados."
+                footer_rights: "© 2026 Carlos Gálvez. Todos los derechos reservados.",
+                theme_toggle_dark: "Cambiar a modo oscuro",
+                theme_toggle_light: "Cambiar a modo claro"
             }
         };
 
         const languageToggle = document.getElementById("language-toggle");
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIconLight = themeToggle.querySelector(".theme-icon-light");
+        const themeIconDark = themeToggle.querySelector(".theme-icon-dark");
         let currentLang = "en";
+
+        function isDarkMode() {
+            return document.documentElement.classList.contains("dark");
+        }
+
+        function updateThemeUI() {
+            const dark = isDarkMode();
+            themeIconLight.classList.toggle("hidden", dark);
+            themeIconDark.classList.toggle("hidden", !dark);
+            const key = dark ? "theme_toggle_light" : "theme_toggle_dark";
+            themeToggle.setAttribute("aria-label", translations[currentLang][key]);
+        }
+
+        function setTheme(theme) {
+            const dark = theme === "dark";
+            document.documentElement.classList.toggle("dark", dark);
+            localStorage.setItem("theme", dark ? "dark" : "light");
+            updateThemeUI();
+        }
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -665,11 +708,18 @@
             });
 
             languageToggle.textContent = lang === "en" ? "ES" : "EN";
+            updateThemeUI();
         }
+
+        themeToggle.addEventListener("click", () => {
+            setTheme(isDarkMode() ? "light" : "dark");
+        });
 
         languageToggle.addEventListener("click", () => {
             setLanguage(currentLang === "en" ? "es" : "en");
         });
+
+        updateThemeUI();
     </script>
 </body>
 
