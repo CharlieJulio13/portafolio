@@ -51,6 +51,370 @@
             display: flex;
         }
 
+        .skill-icon {
+            position: relative;
+            overflow: hidden;
+            animation: skill-icon-float 4s ease-in-out infinite;
+        }
+
+        .skill-icon::after {
+            content: "";
+            position: absolute;
+            top: -10%;
+            left: -120%;
+            width: 55%;
+            height: 120%;
+            background: linear-gradient(
+                105deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.08) 35%,
+                rgba(255, 255, 255, 0.55) 50%,
+                rgba(255, 255, 255, 0.08) 65%,
+                transparent 100%
+            );
+            transform: skewX(-18deg);
+            animation: skill-light-sweep 3.2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .dark .skill-icon::after {
+            background: linear-gradient(
+                105deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 35%,
+                rgba(255, 255, 255, 0.28) 50%,
+                rgba(255, 255, 255, 0.03) 65%,
+                transparent 100%
+            );
+        }
+
+        .skill-icon .material-symbols-outlined {
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-progress-fill {
+            width: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress-fill::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.25) 45%,
+                rgba(255, 255, 255, 0.5) 50%,
+                rgba(255, 255, 255, 0.25) 55%,
+                transparent 100%
+            );
+            background-size: 220% 100%;
+            opacity: 0;
+        }
+
+        #skills.skills-visible .skill-progress-fill {
+            animation: skill-progress-grow 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation-delay: calc(var(--i, 0) * 0.12s);
+        }
+
+        #skills.skills-visible .skill-progress-fill::after {
+            opacity: 1;
+            animation: skill-progress-shimmer 2.2s linear infinite;
+            animation-delay: calc(var(--i, 0) * 0.12s + 1.4s);
+        }
+
+        #skills .grid > div:nth-child(1) .skill-icon,
+        #skills .grid > div:nth-child(1) .skill-icon::after { animation-delay: 0s; }
+        #skills .grid > div:nth-child(2) .skill-icon,
+        #skills .grid > div:nth-child(2) .skill-icon::after { animation-delay: 0.2s; }
+        #skills .grid > div:nth-child(3) .skill-icon,
+        #skills .grid > div:nth-child(3) .skill-icon::after { animation-delay: 0.4s; }
+        #skills .grid > div:nth-child(4) .skill-icon,
+        #skills .grid > div:nth-child(4) .skill-icon::after { animation-delay: 0.6s; }
+        #skills .grid > div:nth-child(5) .skill-icon,
+        #skills .grid > div:nth-child(5) .skill-icon::after { animation-delay: 0.8s; }
+        #skills .grid > div:nth-child(6) .skill-icon,
+        #skills .grid > div:nth-child(6) .skill-icon::after { animation-delay: 1s; }
+
+        @keyframes skill-icon-float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-5px) scale(1.04);
+            }
+        }
+
+        @keyframes skill-light-sweep {
+            0% {
+                left: -120%;
+            }
+
+            55%, 100% {
+                left: 140%;
+            }
+        }
+
+        @keyframes skill-progress-grow {
+            to {
+                width: var(--progress, 0%);
+            }
+        }
+
+        @keyframes skill-progress-shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .skill-icon,
+            .skill-icon::after,
+            .skill-progress-fill,
+            .skill-progress-fill::after {
+                animation: none !important;
+            }
+
+            .skill-progress-fill {
+                width: var(--progress, 0%) !important;
+            }
+        }
+
+        .experience-glass-card {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.42);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow:
+                0 8px 32px rgba(15, 23, 42, 0.07),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85),
+                inset 0 -1px 0 rgba(236, 91, 19, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .experience-glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.55) 0%,
+                rgba(255, 255, 255, 0.05) 42%,
+                rgba(236, 91, 19, 0.08) 100%
+            );
+            pointer-events: none;
+        }
+
+        .experience-glass-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-glass-card:hover {
+            background: rgba(255, 255, 255, 0.52);
+            border-color: rgba(236, 91, 19, 0.35);
+            box-shadow:
+                0 14px 40px rgba(236, 91, 19, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 0 rgba(236, 91, 19, 0.18);
+        }
+
+        .dark .experience-glass-card {
+            background: rgba(34, 22, 16, 0.38);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                inset 0 -1px 0 rgba(236, 91, 19, 0.2);
+        }
+
+        .dark .experience-glass-card::before {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.14) 0%,
+                rgba(255, 255, 255, 0.02) 42%,
+                rgba(236, 91, 19, 0.14) 100%
+            );
+        }
+
+        .dark .experience-glass-card:hover {
+            background: rgba(34, 22, 16, 0.48);
+            border-color: rgba(236, 91, 19, 0.4);
+            box-shadow:
+                0 14px 40px rgba(236, 91, 19, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18),
+                inset 0 -1px 0 rgba(236, 91, 19, 0.28);
+        }
+
+        .cv-chat-glass {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow:
+                0 16px 48px rgba(15, 23, 42, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(236, 91, 19, 0.12);
+        }
+
+        .cv-chat-glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.5) 0%,
+                rgba(255, 255, 255, 0.05) 45%,
+                rgba(236, 91, 19, 0.06) 100%
+            );
+            pointer-events: none;
+        }
+
+        .cv-chat-glass > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .dark .cv-chat-glass {
+            background: rgba(34, 22, 16, 0.82);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow:
+                0 16px 48px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                inset 0 -1px 0 rgba(236, 91, 19, 0.18);
+        }
+
+        .dark .cv-chat-glass::before {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                rgba(255, 255, 255, 0.02) 45%,
+                rgba(236, 91, 19, 0.12) 100%
+            );
+        }
+
+        #cv-chat-panel {
+            transform-origin: bottom right;
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        }
+
+        #cv-chat-panel.cv-chat-panel-hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px) scale(0.96);
+            pointer-events: none;
+        }
+
+        #cv-chat-panel.cv-chat-panel-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .cv-chat-bubble {
+            max-width: 88%;
+            padding: 0.625rem 0.875rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            line-height: 1.45;
+            word-break: break-word;
+        }
+
+        .cv-chat-bubble-user {
+            margin-left: auto;
+            background: #ec5b13;
+            color: #fff;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .cv-chat-bubble-bot {
+            margin-right: auto;
+            background: rgba(248, 246, 246, 0.95);
+            color: #334155;
+            border: 1px solid rgba(236, 91, 19, 0.12);
+            border-bottom-left-radius: 0.25rem;
+        }
+
+        .dark .cv-chat-bubble-bot {
+            background: rgba(15, 23, 42, 0.55);
+            color: #e2e8f0;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .cv-chat-suggestion {
+            border: 1px solid rgba(236, 91, 19, 0.25);
+            background: rgba(236, 91, 19, 0.06);
+            color: #c2410c;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .cv-chat-suggestion:hover {
+            background: rgba(236, 91, 19, 0.14);
+            border-color: rgba(236, 91, 19, 0.45);
+        }
+
+        .dark .cv-chat-suggestion {
+            color: #fdba74;
+            background: rgba(236, 91, 19, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .nav-link {
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -0.25rem;
+            height: 2px;
+            border-radius: 9999px;
+            background: #ec5b13;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.25s ease;
+        }
+
+        .nav-link-active {
+            color: #ec5b13 !important;
+            font-weight: 600;
+        }
+
+        .nav-link-active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
             /* PDF / print: keep layout close to web view */
         @media print {
             * {
@@ -142,7 +506,7 @@
 
             #about .grid,
             #skills .grid > div,
-            #experience .relative.pl-14 > div.bg-white,
+            #experience .relative.pl-14 > .experience-glass-card,
             #experience .relative.pl-14 > div[class*="rounded-2xl"] {
                 break-inside: avoid;
                 page-break-inside: avoid;
@@ -161,6 +525,18 @@
             #skills .grid .size-16 {
                 width: 3rem !important;
                 height: 3rem !important;
+            }
+
+            #experience .experience-glass-card {
+                background: #fff !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: 1px solid rgba(236, 91, 19, 0.12) !important;
+                box-shadow: none !important;
+            }
+
+            #experience .experience-glass-card::before {
+                display: none !important;
             }
 
             /* Experience cards */
@@ -201,50 +577,64 @@
             .screen-only-contact {
                 display: none !important;
             }
+
+            .skill-icon,
+            .skill-icon::after,
+            .skill-progress-fill,
+            .skill-progress-fill::after {
+                animation: none !important;
+            }
+
+            .skill-progress-fill {
+                width: var(--progress, 0%) !important;
+            }
+
+            #cv-chat-toggle,
+            #cv-chat-panel {
+                display: none !important;
+            }
         }
     </style>
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    class="overflow-x-hidden bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col">
         <div class="layout-container flex h-full grow flex-col">
             <!-- Top Navigation Bar -->
             <header
-                class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-4">
-                <div class="flex items-center justify-between max-w-[1200px] mx-auto">
-                    <div class="flex items-center gap-3 text-primary">
-                        <div class="size-8 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-3xl">code</span>
+                class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 sm:px-6 md:px-20 lg:px-40 py-2">
+                <div class="flex max-w-[1200px] mx-auto items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 text-primary shrink-0">
+                        <div class="size-7 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl">code</span>
                         </div>
                         <h2
-                            class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">
+                            class="text-slate-900 dark:text-slate-100 text-sm sm:text-base font-bold leading-tight tracking-[-0.015em]">
                             Carlos Gálvez</h2>
                     </div>
-                    <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
-                        <nav class="flex items-center gap-8">
-                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#about" data-i18n="nav_about">About</a>
-                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#skills" data-i18n="nav_skills">Skills</a>
-                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#experience" data-i18n="nav_experience">Work Experience</a>
-                            <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
-                                href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
+                    <div class="flex items-center gap-2 sm:gap-4 min-w-0 flex-1 justify-end">
+                        <nav class="nav-scroll flex items-center gap-3 sm:gap-5 overflow-x-auto">
+                            <a class="nav-link text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary transition-colors"
+                                href="#about" data-nav-section="about" data-i18n="nav_about">About</a>
+                            <a class="nav-link text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary transition-colors"
+                                href="#skills" data-nav-section="skills" data-i18n="nav_skills">Skills</a>
+                            <a class="nav-link text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary transition-colors"
+                                href="#experience" data-nav-section="experience" data-i18n="nav_experience">Work Experience</a>
                         </nav>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button id="theme-toggle"
-                            class="flex size-9 items-center justify-center rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
-                            type="button" aria-label="Switch to dark mode">
-                            <span class="material-symbols-outlined text-xl theme-icon-light">dark_mode</span>
-                            <span class="material-symbols-outlined text-xl theme-icon-dark hidden">light_mode</span>
-                        </button>
-                        <button id="language-toggle"
-                            class="rounded-full border border-primary/30 px-3 py-1.5 text-xs font-bold tracking-wide text-primary hover:bg-primary/10 transition-colors"
-                            type="button">
-                            ES
-                        </button>
+                        <div class="flex items-center gap-1.5 shrink-0 border-l border-primary/15 pl-2 sm:pl-3">
+                            <button id="theme-toggle"
+                                class="flex size-8 items-center justify-center rounded-full border border-primary/25 text-primary hover:bg-primary/10 transition-colors"
+                                type="button" aria-label="Switch to dark mode">
+                                <span class="material-symbols-outlined text-lg theme-icon-light">dark_mode</span>
+                                <span class="material-symbols-outlined text-lg theme-icon-dark hidden">light_mode</span>
+                            </button>
+                            <button id="language-toggle"
+                                class="rounded-full border border-primary/25 px-2.5 py-1 text-[11px] font-bold tracking-wide text-primary hover:bg-primary/10 transition-colors"
+                                type="button">
+                                ES
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -337,46 +727,46 @@
                             <div
                                 class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-4xl">deployed_code</span>
                                 </div>
                                 <span class="font-bold text-lg">.NET</span>
                                 <div
                                     class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="h-full bg-primary w-[60%]"></div>
+                                    <div class="skill-progress-fill h-full bg-primary" style="--progress: 60%; --i: 0"></div>
                                 </div>
                             </div>
                             <!-- JavaScript -->
                             <div
                                 class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-4xl">javascript</span>
                                 </div>
                                 <span class="font-bold text-lg">JavaScript</span>
                                 <div
                                     class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="h-full bg-primary w-[45%]"></div>
+                                    <div class="skill-progress-fill h-full bg-primary" style="--progress: 45%; --i: 1"></div>
                                 </div>
                             </div>
                             <!-- Java -->
                             <div
                                 class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-4xl">coffee</span>
                                 </div>
                                 <span class="font-bold text-lg">Java</span>
                                 <div
                                     class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="h-full bg-primary w-[15%]"></div>
+                                    <div class="skill-progress-fill h-full bg-primary" style="--progress: 15%; --i: 2"></div>
                                 </div>
                             </div>
                             <!-- C++
                             <div
                                 class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-4xl">settings_ethernet</span>
                                 </div>
                                 <span class="font-bold text-lg">C++</span>
@@ -390,13 +780,13 @@
                              <div
                              class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                              <div
-                                 class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                                 class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                                  <span class="material-symbols-outlined text-4xl">settings_ethernet</span>
                              </div>
                              <span class="font-bold text-lg">SQL</span>
                              <div
                                  class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                 <div class="h-full bg-primary w-[60%]"></div>
+                                 <div class="skill-progress-fill h-full bg-primary" style="--progress: 60%; --i: 3"></div>
                              </div>
                          </div>
 
@@ -404,13 +794,13 @@
                          <div
                          class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                          <div
-                             class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                             class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                              <span class="material-symbols-outlined text-4xl">android</span>
                          </div>
                          <span class="font-bold text-lg">Android</span>
                          <div
                              class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                             <div class="h-full bg-primary w-[20%]"></div>
+                             <div class="skill-progress-fill h-full bg-primary" style="--progress: 20%; --i: 4"></div>
                          </div>
 
                         </div>
@@ -420,15 +810,16 @@
                          <div
                          class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                          <div
-                             class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                             class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                              <span class="material-symbols-outlined text-4xl">hdr_auto</span>
                          </div>
                          <span class="font-bold text-lg">Angular</span>
                          <div
                              class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                             <div class="h-full bg-primary w-[20%]"></div>
+                             <div class="skill-progress-fill h-full bg-primary" style="--progress: 20%; --i: 5"></div>
                          </div>
 
+                        </div>
                         </div>
                     </section>
 
@@ -445,7 +836,7 @@
                                     <span class="material-symbols-outlined text-white text-xl">work</span>
                                 </div>
                                 <div
-                                    class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
+                                    class="experience-glass-card p-8 rounded-2xl">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                         <div>
                                             <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="exp1_role">Senior Developer</h3>
@@ -474,7 +865,7 @@
                                     <span class="material-symbols-outlined text-white text-xl">computer</span>
                                 </div>
                                 <div
-                                    class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
+                                    class="experience-glass-card p-8 rounded-2xl">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                         <div>
                                             <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="exp2_role">Senior Core Developer</h3>
@@ -505,7 +896,7 @@
                                     <span class="material-symbols-outlined text-white text-xl">developer_guide</span>
                                 </div>
                                 <div
-                                    class="bg-white dark:bg-slate-800/20 p-8 rounded-2xl border border-primary/5 hover:border-primary/20 transition-all">
+                                    class="experience-glass-card p-8 rounded-2xl">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                         <div>
                                             <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="exp3_role">Programmer Analyst</h3>
@@ -554,6 +945,37 @@
             </footer>
         </div>
     </div>
+
+    <!-- CV FAQ Chat -->
+    <button id="cv-chat-toggle"
+        class="fixed bottom-6 right-6 z-[60] flex size-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30 hover:scale-105 hover:bg-primary/90 transition-all"
+        type="button" aria-expanded="false" aria-controls="cv-chat-panel" data-i18n-aria="chat_toggle_label">
+        <span class="material-symbols-outlined text-2xl">chat</span>
+    </button>
+
+    <div id="cv-chat-panel"
+        class="cv-chat-glass cv-chat-panel-hidden fixed bottom-24 right-4 sm:right-6 z-[60] flex w-[calc(100vw-2rem)] sm:w-[22rem] max-h-[min(32rem,calc(100vh-7rem))] flex-col rounded-2xl"
+        role="dialog" aria-labelledby="cv-chat-title" aria-hidden="true">
+        <div class="flex items-center justify-between border-b border-primary/10 px-4 py-3">
+            <h3 id="cv-chat-title" class="text-sm font-bold text-slate-900 dark:text-slate-100" data-i18n="chat_title">CV Assistant</h3>
+            <button id="cv-chat-close"
+                class="flex size-8 items-center justify-center rounded-full text-slate-500 hover:bg-primary/10 hover:text-primary transition-colors"
+                type="button" aria-label="Close" data-i18n-aria="chat_close">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
+        <div id="cv-chat-messages" class="flex-1 space-y-3 overflow-y-auto px-4 py-3" role="log" aria-live="polite"></div>
+        <div id="cv-chat-suggestions" class="flex flex-wrap gap-2 border-t border-primary/10 px-4 py-3"></div>
+        <form id="cv-chat-form" class="flex gap-2 border-t border-primary/10 p-3">
+            <input id="cv-chat-input"
+                class="min-w-0 flex-1 rounded-xl border border-primary/20 bg-white/70 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:bg-slate-900/50 dark:text-slate-100 dark:placeholder:text-slate-500"
+                type="text" autocomplete="off" data-i18n-placeholder="chat_placeholder" placeholder="Ask about my experience..." />
+            <button
+                class="rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
+                type="submit" data-i18n="chat_send">Send</button>
+        </form>
+    </div>
+
     <script>
         const translations = {
             en: {
@@ -561,7 +983,6 @@
                 nav_about: "About",
                 nav_skills: "Skills",
                 nav_experience: "Work Experience",
-                nav_portfolio: "Portfolio",
                 hero_tag: "Information Technology",
                 hero_description: "Passionate about continuous learning and integrating new technologies such as AI to deliver faster and more accurate development, while making business, technology, and retail processes easier to understand.",
                 hero_call: "Call",
@@ -608,14 +1029,26 @@
                 exp3_li10: "Implementation of cybersecurity best practices and controls aligned with corporate policy.",
                 footer_rights: "© 2026 Carlos Gálvez. All rights reserved.",
                 theme_toggle_dark: "Switch to dark mode",
-                theme_toggle_light: "Switch to light mode"
+                theme_toggle_light: "Switch to light mode",
+                chat_title: "CV Assistant",
+                chat_welcome: "Hi! Ask me about Carlos's experience, skills, or contact info.",
+                chat_placeholder: "Ask about my experience...",
+                chat_send: "Send",
+                chat_close: "Close chat",
+                chat_toggle_label: "Open CV chat",
+                chat_fallback: "I couldn't find that in the CV. Try asking about .NET, SQL, work experience, or contact.",
+                chat_suggestion_1: ".NET experience?",
+                chat_suggestion_2: "Current role?",
+                chat_suggestion_3: "Skills & stack",
+                chat_suggestion_4: "Banco Bancrea",
+                chat_suggestion_5: "APIs & integrations",
+                chat_suggestion_6: "How to contact?"
             },
             es: {
                 page_title: "Carlos Gálvez | Ingeniero de Tecnologías de la Información",
                 nav_about: "Sobre mí",
                 nav_skills: "Habilidades",
                 nav_experience: "Experiencia Laboral",
-                nav_portfolio: "Portafolio",
                 hero_tag: "Tecnologías de la Información",
                 hero_description: "Apasionado por estudiar y aprender cosas nuevas, integrando nuevas tecnologías como la IA para desarrollos más rápidos y precisos, y para hacer más comprensibles los procesos empresariales, tecnológicos y de retail.",
                 hero_call: "Llamar",
@@ -662,7 +1095,20 @@
                 exp3_li10: "Aplicación de buenas prácticas y controles en seguridad informática alineados a la política corporativa.",
                 footer_rights: "© 2026 Carlos Gálvez. Todos los derechos reservados.",
                 theme_toggle_dark: "Cambiar a modo oscuro",
-                theme_toggle_light: "Cambiar a modo claro"
+                theme_toggle_light: "Cambiar a modo claro",
+                chat_title: "Asistente del CV",
+                chat_welcome: "¡Hola! Pregúntame sobre la experiencia, habilidades o contacto de Carlos.",
+                chat_placeholder: "Pregunta sobre mi experiencia...",
+                chat_send: "Enviar",
+                chat_close: "Cerrar chat",
+                chat_toggle_label: "Abrir chat del CV",
+                chat_fallback: "No encontré eso en el CV. Prueba preguntar por .NET, SQL, experiencia laboral o contacto.",
+                chat_suggestion_1: "¿Experiencia en .NET?",
+                chat_suggestion_2: "¿Rol actual?",
+                chat_suggestion_3: "Habilidades y stack",
+                chat_suggestion_4: "Banco Bancrea",
+                chat_suggestion_5: "APIs e integraciones",
+                chat_suggestion_6: "¿Cómo contactar?"
             }
         };
 
@@ -709,6 +1155,7 @@
 
             languageToggle.textContent = lang === "en" ? "ES" : "EN";
             updateThemeUI();
+            updateChatUiLanguage();
         }
 
         themeToggle.addEventListener("click", () => {
@@ -720,6 +1167,417 @@
         });
 
         updateThemeUI();
+
+        const navLinks = document.querySelectorAll(".nav-link[data-nav-section]");
+        const navSections = Array.from(navLinks)
+            .map((link) => document.getElementById(link.dataset.navSection))
+            .filter(Boolean);
+
+        function setActiveNav(sectionId) {
+            navLinks.forEach((link) => {
+                const isActive = link.dataset.navSection === sectionId;
+                link.classList.toggle("nav-link-active", isActive);
+                if (isActive) {
+                    link.setAttribute("aria-current", "true");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
+            });
+        }
+
+        function updateActiveNavOnScroll() {
+            if (!navSections.length) {
+                return;
+            }
+
+            const headerHeight = document.querySelector("header")?.offsetHeight || 80;
+            const scrollPosition = window.scrollY + headerHeight + 64;
+            let currentSection = navSections[0].id;
+
+            navSections.forEach((section) => {
+                if (section.offsetTop <= scrollPosition) {
+                    currentSection = section.id;
+                }
+            });
+
+            setActiveNav(currentSection);
+        }
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                setActiveNav(link.dataset.navSection);
+            });
+        });
+
+        window.addEventListener("scroll", updateActiveNavOnScroll, { passive: true });
+        window.addEventListener("resize", updateActiveNavOnScroll);
+
+        if (window.location.hash) {
+            const hashSection = window.location.hash.slice(1);
+            if (document.getElementById(hashSection)) {
+                setActiveNav(hashSection);
+            }
+        } else {
+            updateActiveNavOnScroll();
+        }
+
+        const skillsSection = document.getElementById("skills");
+        if (skillsSection) {
+            const skillsObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            skillsSection.classList.add("skills-visible");
+                            skillsObserver.disconnect();
+                        }
+                    });
+                },
+                { threshold: 0.25 }
+            );
+            skillsObserver.observe(skillsSection);
+        }
+
+        const cvFaq = [
+            {
+                id: "experience_general",
+                keys: {
+                    en: ["experience", "years", "how long", "career", "background"],
+                    es: ["experiencia", "años", "cuanto tiempo", "trayectoria", "carrera"]
+                },
+                answer: {
+                    en: "Carlos has 7+ years of experience in IT and full-stack development, with 10+ completed projects. He has worked at Impulsora Elizondo and Banco Bancrea in senior development roles.",
+                    es: "Carlos tiene más de 7 años de experiencia en TI y desarrollo full-stack, con más de 10 proyectos completados. Ha trabajado en Impulsora Elizondo y Banco Bancrea en roles de desarrollo senior."
+                }
+            },
+            {
+                id: "profile_about",
+                keys: {
+                    en: ["about", "profile", "who are you", "introduction", "engineer"],
+                    es: ["sobre", "perfil", "quien eres", "presentacion", "ingeniero"]
+                },
+                answer: {
+                    en: "Carlos is an Information Technology Engineer with a strong foundation in Computer Science and full-stack experience. He combines technical rigor with a user-centered mindset.",
+                    es: "Carlos es ingeniero en tecnologías de la información con sólida base en ciencias de la computación y experiencia full-stack. Combina rigor técnico con enfoque centrado en el usuario."
+                }
+            },
+            {
+                id: "stack_overview",
+                keys: {
+                    en: ["skills", "stack", "technologies", "languages", "programming"],
+                    es: ["habilidades", "stack", "tecnologias", "lenguajes", "programacion"]
+                },
+                answer: {
+                    en: "His main stack includes .NET, JavaScript, Java, SQL, Android, and Angular. He also works with REST APIs, SQL Server, MongoDB, and ecommerce platforms.",
+                    es: "Su stack principal incluye .NET, JavaScript, Java, SQL, Android y Angular. También trabaja con APIs REST, SQL Server, MongoDB y plataformas de ecommerce."
+                }
+            },
+            {
+                id: "stack_net",
+                keys: {
+                    en: ["net", ".net", "dotnet", "core", "nopcommerce", "c#", "csharp"],
+                    es: ["net", ".net", "dotnet", "core", "nopcommerce", "c#", "csharp"]
+                },
+                answer: {
+                    en: "Carlos has strong .NET Core experience. At Impulsora Elizondo he develops and evolves the ecommerce channel on NopCommerce. He also built enterprise web apps with .NET Core at Banco Bancrea.",
+                    es: "Carlos tiene sólida experiencia en .NET Core. En Impulsora Elizondo desarrolla y evoluciona el canal ecommerce en NopCommerce. También construyó aplicaciones web corporativas con .NET Core en Banco Bancrea."
+                }
+            },
+            {
+                id: "stack_sql",
+                keys: {
+                    en: ["sql", "database", "sql server", "mongodb", "data"],
+                    es: ["sql", "base de datos", "sql server", "mongodb", "datos"]
+                },
+                answer: {
+                    en: "He designs, maintains, and optimizes Microsoft SQL Server databases (queries, indexing, performance). He has also administered SQL Server and MongoDB in production environments.",
+                    es: "Diseña, mantiene y optimiza bases de datos Microsoft SQL Server (consultas, índices, rendimiento). También ha administrado SQL Server y MongoDB en entornos productivos."
+                }
+            },
+            {
+                id: "stack_angular",
+                keys: {
+                    en: ["angular", "frontend", "front-end"],
+                    es: ["angular", "frontend", "front-end", "front end"]
+                },
+                answer: {
+                    en: "Carlos has experience with Angular in enterprise web applications, especially during his role as Senior Core Developer at Banco Bancrea (2022–2025).",
+                    es: "Carlos tiene experiencia con Angular en aplicaciones web corporativas, especialmente durante su rol como Desarrollador Core Sr. en Banco Bancrea (2022–2025)."
+                }
+            },
+            {
+                id: "stack_javascript",
+                keys: {
+                    en: ["javascript", "js", "node"],
+                    es: ["javascript", "js", "node"]
+                },
+                answer: {
+                    en: "JavaScript is part of his full-stack skill set, used alongside .NET and Angular in corporate web development projects.",
+                    es: "JavaScript forma parte de su perfil full-stack, usado junto con .NET y Angular en proyectos de desarrollo web corporativo."
+                }
+            },
+            {
+                id: "current_role",
+                keys: {
+                    en: ["current", "present", "now", "today", "job", "work now"],
+                    es: ["actual", "presente", "ahora", "hoy", "trabajo", "empleo actual"]
+                },
+                answer: {
+                    en: "He is currently Senior Developer at Impulsora Elizondo (October 2025 – Present), leading the development team and working on ecommerce, SQL Server, and system integrations.",
+                    es: "Actualmente es Desarrollador Senior en Impulsora Elizondo (octubre 2025 – presente), liderando el equipo de desarrollo y trabajando en ecommerce, SQL Server e integraciones."
+                }
+            },
+            {
+                id: "exp_elizondo",
+                keys: {
+                    en: ["elizondo", "impulsora", "ecommerce", "e-commerce", "retail"],
+                    es: ["elizondo", "impulsora", "ecommerce", "e-commerce", "retail"]
+                },
+                answer: {
+                    en: "At Impulsora Elizondo, Carlos worked as Programmer Analyst (2018–2022) and returned as Senior Developer (2025–Present). He handles NopCommerce ecommerce, ERP sync, payment gateways, and REST APIs.",
+                    es: "En Impulsora Elizondo, Carlos trabajó como Programador Analista (2018–2022) y regresó como Desarrollador Senior (2025–presente). Trabaja con ecommerce NopCommerce, sincronización ERP, pasarelas de pago y APIs REST."
+                }
+            },
+            {
+                id: "exp_bancrea",
+                keys: {
+                    en: ["bancrea", "bank", "banco", "banking", "financial"],
+                    es: ["bancrea", "banco", "banca", "financiero", "finanzas"]
+                },
+                answer: {
+                    en: "At Banco Bancrea (Dec 2022 – Oct 2025) he was Senior Core Developer, building full-stack apps with Angular and .NET Core, integrating internal bank systems, and providing L1/L2 technical support.",
+                    es: "En Banco Bancrea (dic 2022 – oct 2025) fue Desarrollador Core Sr., construyendo apps full-stack con Angular y .NET Core, integrando sistemas internos del banco y brindando soporte técnico L1/L2."
+                }
+            },
+            {
+                id: "exp_analyst",
+                keys: {
+                    en: ["analyst", "programmer analyst", "2018", "documentation"],
+                    es: ["analista", "programador analista", "2018", "documentacion"]
+                },
+                answer: {
+                    en: "As Programmer Analyst at Impulsora Elizondo (Apr 2018 – Dec 2022), he documented processes, integrated ecommerce with payment gateways, synced online channels with ERP, and maintained servers and databases.",
+                    es: "Como Programador Analista en Impulsora Elizondo (abr 2018 – dic 2022), documentó procesos, integró ecommerce con pasarelas de pago, sincronizó el canal online con ERP y mantuvo servidores y bases de datos."
+                }
+            },
+            {
+                id: "apis_integration",
+                keys: {
+                    en: ["api", "rest", "integration", "integrate", "web service", "interoperability"],
+                    es: ["api", "rest", "integracion", "integrar", "web service", "interoperabilidad"]
+                },
+                answer: {
+                    en: "Carlos has extensive experience designing and implementing REST APIs, web services, and integrations between internal systems and third-party platforms (vendors, payment gateways, ERP).",
+                    es: "Carlos tiene amplia experiencia diseñando e implementando APIs REST, web services e integraciones entre sistemas internos y plataformas de terceros (proveedores, pasarelas de pago, ERP)."
+                }
+            },
+            {
+                id: "testing",
+                keys: {
+                    en: ["test", "testing", "unit", "integration", "qa"],
+                    es: ["prueba", "pruebas", "unitaria", "integracion", "qa"]
+                },
+                answer: {
+                    en: "He defines and executes unit and integration tests throughout the delivery cycle, including before production deployments and during user acceptance validation.",
+                    es: "Define y ejecuta pruebas unitarias y de integración en el ciclo de entrega, incluyendo antes de despliegues a producción y durante validación con usuarios."
+                }
+            },
+            {
+                id: "leadership",
+                keys: {
+                    en: ["lead", "leadership", "team", "senior", "manager"],
+                    es: ["lider", "liderazgo", "equipo", "senior", "gerente"]
+                },
+                answer: {
+                    en: "Carlos provides technical leadership: prioritization, code review, task assignment, team coordination, and alignment with business goals in his senior roles.",
+                    es: "Carlos brinda liderazgo técnico: priorización, revisión de código, asignación de tareas, coordinación de equipos y alineación con objetivos de negocio en sus roles senior."
+                }
+            },
+            {
+                id: "contact",
+                keys: {
+                    en: ["contact", "phone", "whatsapp", "reach", "email", "call"],
+                    es: ["contacto", "telefono", "whatsapp", "llamar", "correo", "comunicar"]
+                },
+                answer: {
+                    en: "You can contact Carlos via WhatsApp or phone using the buttons in the hero section. Phone: +52 8125150826 (also visible in the CV/PDF version).",
+                    es: "Puedes contactar a Carlos por WhatsApp o teléfono con los botones en la sección principal. Teléfono: +52 8125150826 (también visible en la versión CV/PDF)."
+                }
+            }
+        ];
+
+        const chatSuggestionFaqIds = [
+            "stack_net",
+            "current_role",
+            "stack_overview",
+            "exp_bancrea",
+            "apis_integration",
+            "contact"
+        ];
+
+        const chatToggle = document.getElementById("cv-chat-toggle");
+        const chatPanel = document.getElementById("cv-chat-panel");
+        const chatClose = document.getElementById("cv-chat-close");
+        const chatMessages = document.getElementById("cv-chat-messages");
+        const chatSuggestions = document.getElementById("cv-chat-suggestions");
+        const chatForm = document.getElementById("cv-chat-form");
+        const chatInput = document.getElementById("cv-chat-input");
+        let chatWelcomed = false;
+        let chatOpen = false;
+
+        function normalizeChatText(text) {
+            return text
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .trim();
+        }
+
+        function findFaqAnswer(question, lang) {
+            const normalized = normalizeChatText(question);
+            if (!normalized) {
+                return translations[lang].chat_fallback;
+            }
+
+            let bestEntry = null;
+            let bestScore = 0;
+
+            cvFaq.forEach((entry) => {
+                let score = 0;
+                entry.keys[lang].forEach((keyword) => {
+                    const normalizedKeyword = normalizeChatText(keyword);
+                    if (normalizedKeyword && normalized.includes(normalizedKeyword)) {
+                        score += normalizedKeyword.length >= 4 ? 2 : 1;
+                    }
+                });
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestEntry = entry;
+                }
+            });
+
+            if (bestEntry && bestScore > 0) {
+                return bestEntry.answer[lang];
+            }
+
+            return translations[lang].chat_fallback;
+        }
+
+        function getFaqById(id) {
+            return cvFaq.find((entry) => entry.id === id) || null;
+        }
+
+        function addChatMessage(text, role) {
+            const bubble = document.createElement("div");
+            bubble.className = `cv-chat-bubble ${role === "user" ? "cv-chat-bubble-user" : "cv-chat-bubble-bot"}`;
+            bubble.textContent = text;
+            chatMessages.appendChild(bubble);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendChatMessage(text) {
+            const message = text.trim();
+            if (!message) {
+                return;
+            }
+
+            addChatMessage(message, "user");
+            const answer = findFaqAnswer(message, currentLang);
+            window.setTimeout(() => {
+                addChatMessage(answer, "bot");
+            }, 280);
+        }
+
+        function sendChatFaqById(faqId, userLabel) {
+            const entry = getFaqById(faqId);
+            if (!entry) {
+                return;
+            }
+
+            addChatMessage(userLabel, "user");
+            window.setTimeout(() => {
+                addChatMessage(entry.answer[currentLang], "bot");
+            }, 280);
+        }
+
+        function renderChatSuggestions() {
+            const dict = translations[currentLang];
+            chatSuggestions.innerHTML = "";
+
+            chatSuggestionFaqIds.forEach((faqId, index) => {
+                const key = `chat_suggestion_${index + 1}`;
+                const label = dict[key];
+                if (!label) {
+                    return;
+                }
+
+                const chip = document.createElement("button");
+                chip.type = "button";
+                chip.className = "cv-chat-suggestion rounded-full px-3 py-1 text-xs font-medium";
+                chip.textContent = label;
+                chip.addEventListener("click", () => {
+                    sendChatFaqById(faqId, label);
+                });
+                chatSuggestions.appendChild(chip);
+            });
+        }
+
+        function updateChatUiLanguage() {
+            const dict = translations[currentLang];
+
+            document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+                const key = el.getAttribute("data-i18n-placeholder");
+                if (dict[key]) {
+                    el.setAttribute("placeholder", dict[key]);
+                }
+            });
+
+            document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+                const key = el.getAttribute("data-i18n-aria");
+                if (dict[key]) {
+                    el.setAttribute("aria-label", dict[key]);
+                }
+            });
+
+            renderChatSuggestions();
+        }
+
+        function setChatOpen(open) {
+            chatOpen = open;
+            chatToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            chatPanel.setAttribute("aria-hidden", open ? "false" : "true");
+            chatPanel.classList.toggle("cv-chat-panel-visible", open);
+            chatPanel.classList.toggle("cv-chat-panel-hidden", !open);
+
+            if (open) {
+                if (!chatWelcomed) {
+                    addChatMessage(translations[currentLang].chat_welcome, "bot");
+                    chatWelcomed = true;
+                }
+                chatInput.focus();
+            }
+        }
+
+        chatToggle.addEventListener("click", () => {
+            setChatOpen(!chatOpen);
+        });
+
+        chatClose.addEventListener("click", () => {
+            setChatOpen(false);
+        });
+
+        chatForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            sendChatMessage(chatInput.value);
+            chatInput.value = "";
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && chatOpen) {
+                setChatOpen(false);
+            }
+        });
+
+        updateChatUiLanguage();
     </script>
 </body>
 
