@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
     <script>
         (function () {
             const stored = localStorage.getItem("theme");
-            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            if (stored === "dark" || (!stored && prefersDark)) {
+            if (stored === "dark") {
                 document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
             }
         })();
     </script>
@@ -132,12 +133,6 @@
         #skills .grid > div:nth-child(2) .skill-icon::after { animation-delay: 0.2s; }
         #skills .grid > div:nth-child(3) .skill-icon,
         #skills .grid > div:nth-child(3) .skill-icon::after { animation-delay: 0.4s; }
-        #skills .grid > div:nth-child(4) .skill-icon,
-        #skills .grid > div:nth-child(4) .skill-icon::after { animation-delay: 0.6s; }
-        #skills .grid > div:nth-child(5) .skill-icon,
-        #skills .grid > div:nth-child(5) .skill-icon::after { animation-delay: 0.8s; }
-        #skills .grid > div:nth-child(6) .skill-icon,
-        #skills .grid > div:nth-child(6) .skill-icon::after { animation-delay: 1s; }
 
         @keyframes skill-icon-float {
             0%, 100% {
@@ -620,19 +615,21 @@
                             <a class="nav-link text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary transition-colors"
                                 href="#skills" data-nav-section="skills" data-i18n="nav_skills">Skills</a>
                             <a class="nav-link text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary transition-colors"
+                                href="#projects" data-nav-section="projects" data-i18n="nav_projects">Projects</a>
+                            <a class="nav-link text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary transition-colors"
                                 href="#experience" data-nav-section="experience" data-i18n="nav_experience">Work Experience</a>
                         </nav>
                         <div class="flex items-center gap-1.5 shrink-0 border-l border-primary/15 pl-2 sm:pl-3">
                             <button id="theme-toggle"
                                 class="flex size-8 items-center justify-center rounded-full border border-primary/25 text-primary hover:bg-primary/10 transition-colors"
-                                type="button" aria-label="Switch to dark mode">
+                                type="button" aria-label="Cambiar a modo oscuro">
                                 <span class="material-symbols-outlined text-lg theme-icon-light">dark_mode</span>
                                 <span class="material-symbols-outlined text-lg theme-icon-dark hidden">light_mode</span>
                             </button>
                             <button id="language-toggle"
                                 class="rounded-full border border-primary/25 px-2.5 py-1 text-[11px] font-bold tracking-wide text-primary hover:bg-primary/10 transition-colors"
                                 type="button">
-                                ES
+                                EN
                             </button>
                         </div>
                     </div>
@@ -664,9 +661,10 @@
                                     deliver faster and more accurate development, while making business, technology, and
                                     retail processes easier to understand.
                                 </p>
-                                <p class="print-only-contact text-slate-700 text-base font-semibold" data-i18n="hero_phone_pdf">
-                                    Contact phone: +52 8125150826
-                                </p>
+                                <div class="print-only-contact space-y-1 text-slate-700 text-base font-semibold">
+                                    <p data-i18n="hero_phone_pdf">Contact phone: +52 8125150826</p>
+                                    <p data-i18n="hero_email_pdf">Email: carlosgalvez9707@hotmail.com</p>
+                                </div>
                             </div>
                             <div class="screen-only-contact flex-wrap items-center gap-3">
                                 <a class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white hover:opacity-90 transition-opacity"
@@ -678,7 +676,10 @@
                                     data-i18n="hero_whatsapp">
                                     WhatsApp
                                 </a>
-
+                                <a class="inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm font-bold text-primary hover:bg-primary/10 transition-colors"
+                                    href="mailto:carlosgalvez9707@hotmail.com" data-i18n="hero_email">
+                                    Email
+                                </a>
                             </div>
                         </div>
                     </section>
@@ -719,111 +720,122 @@
                             </div>
                         </div>
                     </section>
-                    <!-- Programming Languages -->
+                    <!-- Tech Stack -->
                     <section class="mb-24 scroll-mt-28" id="skills">
-                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10 text-center" data-i18n="skills_title">Programming Languages</h2>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                            <!-- Python -->
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10 text-center" data-i18n="skills_title">Tech Stack</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div
-                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                class="group flex flex-col p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-4xl">deployed_code</span>
+                                    class="skill-icon size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
+                                    <span class="material-symbols-outlined text-3xl">dns</span>
                                 </div>
-                                <span class="font-bold text-lg">.NET</span>
-                                <div
-                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="skill-progress-fill h-full bg-primary" style="--progress: 60%; --i: 0"></div>
-                                </div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-slate-100 mb-4" data-i18n="skills_backend_title">Backend</h3>
+                                <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>.NET Core</li>
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>SQL Server</li>
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>REST APIs</li>
+                                </ul>
                             </div>
-                            <!-- JavaScript -->
                             <div
-                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                class="group flex flex-col p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-4xl">javascript</span>
+                                    class="skill-icon size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
+                                    <span class="material-symbols-outlined text-3xl">web</span>
                                 </div>
-                                <span class="font-bold text-lg">JavaScript</span>
-                                <div
-                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="skill-progress-fill h-full bg-primary" style="--progress: 45%; --i: 1"></div>
-                                </div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-slate-100 mb-4" data-i18n="skills_frontend_title">Frontend</h3>
+                                <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>Angular</li>
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>JavaScript</li>
+                                </ul>
                             </div>
-                            <!-- Java -->
                             <div
-                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
+                                class="group flex flex-col p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
                                 <div
-                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-4xl">coffee</span>
+                                    class="skill-icon size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
+                                    <span class="material-symbols-outlined text-3xl">database</span>
                                 </div>
-                                <span class="font-bold text-lg">Java</span>
-                                <div
-                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="skill-progress-fill h-full bg-primary" style="--progress: 15%; --i: 2"></div>
-                                </div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-slate-100 mb-4" data-i18n="skills_other_title">Data &amp; platforms</h3>
+                                <ul class="space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>MongoDB</li>
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>NopCommerce</li>
+                                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-primary shrink-0"></span>ERP</li>
+                                </ul>
                             </div>
-                            <!-- C++
-                            <div
-                                class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
-                                <div
-                                    class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-4xl">settings_ethernet</span>
-                                </div>
-                                <span class="font-bold text-lg">C++</span>
-                                <div
-                                    class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                    <div class="h-full bg-primary w-[80%]"></div>
-                                </div>
-                            </div> -->
-
-                             <!-- SQL-->
-                             <div
-                             class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
-                             <div
-                                 class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                 <span class="material-symbols-outlined text-4xl">settings_ethernet</span>
-                             </div>
-                             <span class="font-bold text-lg">SQL</span>
-                             <div
-                                 class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                                 <div class="skill-progress-fill h-full bg-primary" style="--progress: 60%; --i: 3"></div>
-                             </div>
-                         </div>
-
-                         <!-- Android-->
-                         <div
-                         class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
-                         <div
-                             class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                             <span class="material-symbols-outlined text-4xl">android</span>
-                         </div>
-                         <span class="font-bold text-lg">Android</span>
-                         <div
-                             class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                             <div class="skill-progress-fill h-full bg-primary" style="--progress: 20%; --i: 4"></div>
-                         </div>
-
-                        </div>
-
-
-                         <!-- Angular-->
-                         <div
-                         class="group flex flex-col items-center p-8 rounded-2xl bg-white dark:bg-slate-800/30 border border-primary/10 hover:border-primary/40 transition-all hover:shadow-xl shadow-primary/5">
-                         <div
-                             class="skill-icon size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                             <span class="material-symbols-outlined text-4xl">hdr_auto</span>
-                         </div>
-                         <span class="font-bold text-lg">Angular</span>
-                         <div
-                             class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 overflow-hidden">
-                             <div class="skill-progress-fill h-full bg-primary" style="--progress: 20%; --i: 5"></div>
-                         </div>
-
-                        </div>
                         </div>
                     </section>
 
-
+                    <!-- Featured Projects -->
+                    <section class="mb-24 scroll-mt-28" id="projects">
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-4 text-center" data-i18n="projects_title">Featured Projects</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-center max-w-2xl mx-auto mb-10" data-i18n="projects_intro">Selected work across retail ecommerce, banking systems, and B2B business portals.</p>
+                        <div class="grid grid-cols-1 gap-6">
+                            <article class="experience-glass-card p-8 rounded-2xl">
+                                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="proj1_title">Elizondo ecommerce</h3>
+                                        <p class="text-primary font-semibold mt-1">Impulsora Elizondo · NopCommerce / .NET Core</p>
+                                    </div>
+                                    <a class="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline shrink-0"
+                                        href="https://www.elizondoenlinea.com/" rel="noopener noreferrer" target="_blank"
+                                        data-i18n="proj_visit">Visit site</a>
+                                </div>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4" data-i18n="proj1_desc">Online retail channel built and evolved on NopCommerce with .NET Core, including payment gateways, ERP synchronization for inventory, orders and catalogs, and ongoing performance and feature work.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-semibold text-primary">
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">.NET Core</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">NopCommerce</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">SQL Server</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">ERP</span>
+                                </div>
+                            </article>
+                            <article class="experience-glass-card p-8 rounded-2xl">
+                                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="proj2_title">Banking core applications</h3>
+                                        <p class="text-primary font-semibold mt-1">Banco Bancrea · Angular / .NET Core</p>
+                                    </div>
+                                    <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-200/80 dark:bg-slate-700/60 px-3 py-1 text-xs font-bold text-slate-600 dark:text-slate-300 shrink-0" data-i18n="proj_internal">Internal · confidential</span>
+                                </div>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4" data-i18n="proj2_desc">Enterprise full-stack web applications for banking operations: Angular frontends, .NET Core backends, SQL Server, third-party integrations, and technical leadership across delivery. Public demos are restricted by bank policy.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-semibold text-primary">
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">Angular</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">.NET Core</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">SQL Server</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">Integrations</span>
+                                </div>
+                            </article>
+                            <article class="experience-glass-card p-8 rounded-2xl">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100" data-i18n="proj3_title">B2B portals &amp; business integrations</h3>
+                                    <p class="text-primary font-semibold mt-1">Impulsora Elizondo · APIs / web portals</p>
+                                </div>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-5" data-i18n="proj3_desc">Supplier, provider, and credit portals that connect partners and customers with internal processes through secure login flows, reporting, and credit applications.</p>
+                                <ul class="space-y-3 mb-5">
+                                    <li>
+                                        <a class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                                            href="https://proveedores.elizondomx.com/Supplier/Login" rel="noopener noreferrer" target="_blank"
+                                            data-i18n="proj3_link1">Supplier portal</a>
+                                    </li>
+                                    <li>
+                                        <a class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                                            href="https://servicios.elizondomx.com/Provider/Login" rel="noopener noreferrer" target="_blank"
+                                            data-i18n="proj3_link2">Provider services portal</a>
+                                    </li>
+                                    <li>
+                                        <a class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                                            href="https://micreditoelizondo.com/Solicitud" rel="noopener noreferrer" target="_blank"
+                                            data-i18n="proj3_link3">Mi Crédito Elizondo</a>
+                                    </li>
+                                </ul>
+                                <div class="flex flex-wrap gap-2 text-xs font-semibold text-primary">
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">REST APIs</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">.NET</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">SQL Server</span>
+                                    <span class="rounded-full bg-primary/10 px-3 py-1">B2B</span>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
                     <!-- Work Experience -->
                     <section class="mb-24 scroll-mt-28" id="experience">
                         <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold mb-10" data-i18n="experience_title">Work Experience</h2>
@@ -935,10 +947,15 @@
                         </div>
                         <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Carlos Gálvez</h2>
                     </div>
-                    <div class="flex gap-6">
-                        <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
-                        <a class="hover:text-primary transition-colors" href="#">GitHub</a>
-                        <a class="hover:text-primary transition-colors" href="#">Twitter</a>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <a class="hover:text-primary transition-colors"
+                            href="https://www.linkedin.com/in/carlos-galvez-b60430147/"
+                            rel="noopener noreferrer" target="_blank">LinkedIn</a>
+                        <a class="hover:text-primary transition-colors"
+                            href="https://github.com/CharlieJulio13"
+                            rel="noopener noreferrer" target="_blank">GitHub</a>
+                        <a class="hover:text-primary transition-colors"
+                            href="mailto:carlosgalvez9707@hotmail.com">Email</a>
                     </div>
                     <p class="text-slate-500 text-sm" data-i18n="footer_rights">© 2026 Carlos Gálvez. All rights reserved.</p>
                 </div>
@@ -982,19 +999,38 @@
                 page_title: "Carlos Gálvez | Information Technology Engineer",
                 nav_about: "About",
                 nav_skills: "Skills",
+                nav_projects: "Projects",
                 nav_experience: "Work Experience",
                 hero_tag: "Information Technology",
                 hero_description: "Passionate about continuous learning and integrating new technologies such as AI to deliver faster and more accurate development, while making business, technology, and retail processes easier to understand.",
                 hero_call: "Call",
                 hero_whatsapp: "WhatsApp",
+                hero_email: "Email",
                 hero_privacy_note: "Phone number is only visible in CV/PDF.",
                 hero_phone_pdf: "Contact phone: +52 8125150826",
+                hero_email_pdf: "Email: carlosgalvez9707@hotmail.com",
                 about_title: "About Me",
                 about_p1: "I am an Information Technology Engineer with a strong foundation in Computer Science and full-stack development experience. I thrive in collaborative environments and I am always eager to learn new technologies.",
                 about_p2: "My approach combines technical rigor with a user-centered mindset, ensuring that each line of code contributes to a seamless digital experience.",
                 about_years: "Years of Experience",
                 about_projects: "Completed Projects",
-                skills_title: "Programming Languages",
+                skills_title: "Tech Stack",
+                skills_backend_title: "Backend",
+                skills_frontend_title: "Frontend",
+                skills_other_title: "Data & platforms",
+                projects_title: "Featured Projects",
+                projects_intro: "Selected work across retail ecommerce, banking systems, and B2B business portals.",
+                proj_visit: "Visit site",
+                proj_internal: "Internal · confidential",
+                proj1_title: "Elizondo ecommerce",
+                proj1_desc: "Online retail channel built and evolved on NopCommerce with .NET Core, including payment gateways, ERP synchronization for inventory, orders and catalogs, and ongoing performance and feature work.",
+                proj2_title: "Banking core applications",
+                proj2_desc: "Enterprise full-stack web applications for banking operations: Angular frontends, .NET Core backends, SQL Server, third-party integrations, and technical leadership across delivery. Public demos are restricted by bank policy.",
+                proj3_title: "B2B portals & business integrations",
+                proj3_desc: "Supplier, provider, and credit portals that connect partners and customers with internal processes through secure login flows, reporting, and credit applications.",
+                proj3_link1: "Supplier portal",
+                proj3_link2: "Provider services portal",
+                proj3_link3: "Mi Crédito Elizondo",
                 experience_title: "Work Experience",
                 exp1_role: "Senior Developer",
                 exp1_date: "October 2025 - Present",
@@ -1041,26 +1077,45 @@
                 chat_suggestion_2: "Current role?",
                 chat_suggestion_3: "Skills & stack",
                 chat_suggestion_4: "Banco Bancrea",
-                chat_suggestion_5: "APIs & integrations",
+                chat_suggestion_5: "Featured projects?",
                 chat_suggestion_6: "How to contact?"
             },
             es: {
                 page_title: "Carlos Gálvez | Ingeniero de Tecnologías de la Información",
                 nav_about: "Sobre mí",
                 nav_skills: "Habilidades",
+                nav_projects: "Proyectos",
                 nav_experience: "Experiencia Laboral",
                 hero_tag: "Tecnologías de la Información",
                 hero_description: "Apasionado por estudiar y aprender cosas nuevas, integrando nuevas tecnologías como la IA para desarrollos más rápidos y precisos, y para hacer más comprensibles los procesos empresariales, tecnológicos y de retail.",
                 hero_call: "Llamar",
                 hero_whatsapp: "WhatsApp",
+                hero_email: "Correo",
                 hero_privacy_note: "El número solo es visible en la versión CV/PDF.",
                 hero_phone_pdf: "Teléfono de contacto: +52 8125150826",
+                hero_email_pdf: "Correo: carlosgalvez9707@hotmail.com",
                 about_title: "Sobre mí",
                 about_p1: "Soy un ingeniero de tecnologías de la información con una fuerte base en ciencias de la computación y experiencia en desarrollo full-stack. Me desempeño bien en entornos colaborativos y siempre estoy ansioso por aprender nuevas tecnologías.",
                 about_p2: "Mi enfoque combina rigor técnico con una mentalidad centrada en el usuario, asegurando que cada línea de código contribuya a una experiencia digital fluida.",
                 about_years: "Años de Experiencia",
                 about_projects: "Proyectos Completados",
-                skills_title: "Lenguajes de Programación",
+                skills_title: "Stack tecnológico",
+                skills_backend_title: "Backend",
+                skills_frontend_title: "Frontend",
+                skills_other_title: "Datos y plataformas",
+                projects_title: "Proyectos destacados",
+                projects_intro: "Trabajo seleccionado en ecommerce retail, sistemas bancarios y portales B2B de negocio.",
+                proj_visit: "Ver sitio",
+                proj_internal: "Interno · confidencial",
+                proj1_title: "Ecommerce Elizondo",
+                proj1_desc: "Canal de venta en línea construido y evolucionado sobre NopCommerce con .NET Core, incluyendo pasarelas de pago, sincronización con ERP (inventarios, pedidos y catálogos) y mejoras continuas de rendimiento y funcionalidad.",
+                proj2_title: "Aplicaciones core bancarias",
+                proj2_desc: "Aplicaciones web corporativas full-stack para operaciones bancarias: frontends en Angular, backends en .NET Core, SQL Server, integraciones con terceros y liderazgo técnico en entregas. Las demos públicas están restringidas por política del banco.",
+                proj3_title: "Portales B2B e integraciones de negocio",
+                proj3_desc: "Portales de proveedores, servicios y crédito que conectan socios y clientes con procesos internos mediante accesos seguros, reportes y solicitudes de crédito.",
+                proj3_link1: "Portal de proveedores",
+                proj3_link2: "Portal de servicios a proveedores",
+                proj3_link3: "Mi Crédito Elizondo",
                 experience_title: "Experiencia Laboral",
                 exp1_role: "Desarrollador Senior",
                 exp1_date: "Octubre 2025 - Presente",
@@ -1107,7 +1162,7 @@
                 chat_suggestion_2: "¿Rol actual?",
                 chat_suggestion_3: "Habilidades y stack",
                 chat_suggestion_4: "Banco Bancrea",
-                chat_suggestion_5: "APIs e integraciones",
+                chat_suggestion_5: "¿Proyectos destacados?",
                 chat_suggestion_6: "¿Cómo contactar?"
             }
         };
@@ -1116,7 +1171,7 @@
         const themeToggle = document.getElementById("theme-toggle");
         const themeIconLight = themeToggle.querySelector(".theme-icon-light");
         const themeIconDark = themeToggle.querySelector(".theme-icon-dark");
-        let currentLang = "en";
+        let currentLang = localStorage.getItem("lang") === "en" ? "en" : "es";
 
         function isDarkMode() {
             return document.documentElement.classList.contains("dark");
@@ -1140,6 +1195,7 @@
         function setLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
+            localStorage.setItem("lang", lang);
 
             const dict = translations[lang];
             document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -1165,8 +1221,6 @@
         languageToggle.addEventListener("click", () => {
             setLanguage(currentLang === "en" ? "es" : "en");
         });
-
-        updateThemeUI();
 
         const navLinks = document.querySelectorAll(".nav-link[data-nav-section]");
         const navSections = Array.from(navLinks)
@@ -1267,8 +1321,8 @@
                     es: ["habilidades", "stack", "tecnologias", "lenguajes", "programacion"]
                 },
                 answer: {
-                    en: "His main stack includes .NET, JavaScript, Java, SQL, Android, and Angular. He also works with REST APIs, SQL Server, MongoDB, and ecommerce platforms.",
-                    es: "Su stack principal incluye .NET, JavaScript, Java, SQL, Android y Angular. También trabaja con APIs REST, SQL Server, MongoDB y plataformas de ecommerce."
+                    en: "His main stack: Backend (.NET Core, SQL Server, REST APIs), Frontend (Angular, JavaScript), and Data & platforms (MongoDB, NopCommerce, ERP).",
+                    es: "Su stack principal: Backend (.NET Core, SQL Server, APIs REST), Frontend (Angular, JavaScript) y Datos y plataformas (MongoDB, NopCommerce, ERP)."
                 }
             },
             {
@@ -1333,8 +1387,8 @@
                     es: ["elizondo", "impulsora", "ecommerce", "e-commerce", "retail"]
                 },
                 answer: {
-                    en: "At Impulsora Elizondo, Carlos worked as Programmer Analyst (2018–2022) and returned as Senior Developer (2025–Present). He handles NopCommerce ecommerce, ERP sync, payment gateways, and REST APIs.",
-                    es: "En Impulsora Elizondo, Carlos trabajó como Programador Analista (2018–2022) y regresó como Desarrollador Senior (2025–presente). Trabaja con ecommerce NopCommerce, sincronización ERP, pasarelas de pago y APIs REST."
+                    en: "At Impulsora Elizondo, Carlos worked as Programmer Analyst (2018–2022) and returned as Senior Developer (2025–Present). He handles NopCommerce ecommerce (elizondoenlinea.com), ERP sync, payment gateways, REST APIs, and B2B portals for suppliers, providers, and credit.",
+                    es: "En Impulsora Elizondo, Carlos trabajó como Programador Analista (2018–2022) y regresó como Desarrollador Senior (2025–presente). Trabaja con ecommerce NopCommerce (elizondoenlinea.com), sincronización ERP, pasarelas de pago, APIs REST y portales B2B de proveedores, servicios y crédito."
                 }
             },
             {
@@ -1344,8 +1398,8 @@
                     es: ["bancrea", "banco", "banca", "financiero", "finanzas"]
                 },
                 answer: {
-                    en: "At Banco Bancrea (Dec 2022 – Oct 2025) he was Senior Core Developer, building full-stack apps with Angular and .NET Core, integrating internal bank systems, and providing L1/L2 technical support.",
-                    es: "En Banco Bancrea (dic 2022 – oct 2025) fue Desarrollador Core Sr., construyendo apps full-stack con Angular y .NET Core, integrando sistemas internos del banco y brindando soporte técnico L1/L2."
+                    en: "At Banco Bancrea (Dec 2022 – Oct 2025) he was Senior Core Developer, building full-stack apps with Angular and .NET Core, integrating internal bank systems, and providing L1/L2 technical support. Those systems are internal and cannot be shared publicly due to bank policy.",
+                    es: "En Banco Bancrea (dic 2022 – oct 2025) fue Desarrollador Core Sr., construyendo apps full-stack con Angular y .NET Core, integrando sistemas internos del banco y brindando soporte técnico L1/L2. Esos sistemas son internos y no se pueden compartir públicamente por política del banco."
                 }
             },
             {
@@ -1366,8 +1420,19 @@
                     es: ["api", "rest", "integracion", "integrar", "web service", "interoperabilidad"]
                 },
                 answer: {
-                    en: "Carlos has extensive experience designing and implementing REST APIs, web services, and integrations between internal systems and third-party platforms (vendors, payment gateways, ERP).",
-                    es: "Carlos tiene amplia experiencia diseñando e implementando APIs REST, web services e integraciones entre sistemas internos y plataformas de terceros (proveedores, pasarelas de pago, ERP)."
+                    en: "Carlos designs REST APIs and B2B portals at Elizondo, including supplier (proveedores.elizondomx.com), provider services (servicios.elizondomx.com), and Mi Crédito Elizondo (micreditoelizondo.com), plus ERP and payment integrations.",
+                    es: "Carlos diseña APIs REST y portales B2B en Elizondo, incluyendo proveedores (proveedores.elizondomx.com), servicios a proveedores (servicios.elizondomx.com) y Mi Crédito Elizondo (micreditoelizondo.com), además de integraciones con ERP y pagos."
+                }
+            },
+            {
+                id: "featured_projects",
+                keys: {
+                    en: ["project", "projects", "portfolio", "demo", "website", "portal"],
+                    es: ["proyecto", "proyectos", "portafolio", "demo", "sitio", "portal"]
+                },
+                answer: {
+                    en: "Featured projects: 1) Elizondo ecommerce at elizondoenlinea.com (NopCommerce/.NET). 2) Banking core apps at Bancrea (internal/confidential). 3) B2B portals: suppliers, provider services, and Mi Crédito Elizondo.",
+                    es: "Proyectos destacados: 1) Ecommerce Elizondo en elizondoenlinea.com (NopCommerce/.NET). 2) Apps core bancarias en Bancrea (interno/confidencial). 3) Portales B2B: proveedores, servicios y Mi Crédito Elizondo."
                 }
             },
             {
@@ -1399,8 +1464,8 @@
                     es: ["contacto", "telefono", "whatsapp", "llamar", "correo", "comunicar"]
                 },
                 answer: {
-                    en: "You can contact Carlos via WhatsApp or phone using the buttons in the hero section. Phone: +52 8125150826 (also visible in the CV/PDF version).",
-                    es: "Puedes contactar a Carlos por WhatsApp o teléfono con los botones en la sección principal. Teléfono: +52 8125150826 (también visible en la versión CV/PDF)."
+                    en: "You can contact Carlos by email at carlosgalvez9707@hotmail.com, WhatsApp or phone (+52 8125150826), or via LinkedIn and GitHub in the footer.",
+                    es: "Puedes contactar a Carlos por correo en carlosgalvez9707@hotmail.com, WhatsApp o teléfono (+52 8125150826), o por LinkedIn y GitHub en el pie de página."
                 }
             }
         ];
@@ -1410,7 +1475,7 @@
             "current_role",
             "stack_overview",
             "exp_bancrea",
-            "apis_integration",
+            "featured_projects",
             "contact"
         ];
 
@@ -1577,7 +1642,8 @@
             }
         });
 
-        updateChatUiLanguage();
+        updateThemeUI();
+        setLanguage(currentLang);
     </script>
 </body>
 
