@@ -16,6 +16,7 @@
     </script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
@@ -585,7 +586,9 @@
             }
 
             #cv-chat-toggle,
-            #cv-chat-panel {
+            #cv-chat-panel,
+            #cv-pdf-download,
+            #cv-pdf-download-hero {
                 display: none !important;
             }
         }
@@ -620,6 +623,11 @@
                                 href="#experience" data-nav-section="experience" data-i18n="nav_experience">Work Experience</a>
                         </nav>
                         <div class="flex items-center gap-1.5 shrink-0 border-l border-primary/15 pl-2 sm:pl-3">
+                            <button id="cv-pdf-download"
+                                class="flex size-8 items-center justify-center rounded-full border border-primary/25 text-primary hover:bg-primary/10 transition-colors"
+                                type="button" aria-label="Download CV in PDF" data-i18n-aria="pdf_download_label">
+                                <span class="material-symbols-outlined text-lg">download</span>
+                            </button>
                             <button id="theme-toggle"
                                 class="flex size-8 items-center justify-center rounded-full border border-primary/25 text-primary hover:bg-primary/10 transition-colors"
                                 type="button" aria-label="Cambiar a modo oscuro">
@@ -680,6 +688,12 @@
                                     href="mailto:carlosgalvez9707@hotmail.com" data-i18n="hero_email">
                                     Email
                                 </a>
+                                <button id="cv-pdf-download-hero"
+                                    class="inline-flex items-center gap-2 rounded-full border border-slate-400/60 px-5 py-2.5 text-sm font-bold text-slate-700 dark:text-slate-300 dark:border-slate-500/60 hover:bg-slate-900/5 dark:hover:bg-white/10 transition-colors"
+                                    type="button">
+                                    <span class="material-symbols-outlined text-lg">download</span>
+                                    <span data-i18n="hero_download_pdf">Download CV (PDF)</span>
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -1006,6 +1020,14 @@
                 hero_call: "Call",
                 hero_whatsapp: "WhatsApp",
                 hero_email: "Email",
+                hero_download_pdf: "Download CV (PDF)",
+                pdf_download_label: "Download CV as PDF",
+                pdf_title_role: "Information Technology Engineer",
+                pdf_section_profile: "Profile",
+                pdf_section_experience: "Professional Experience",
+                pdf_section_skills: "Technical Skills",
+                pdf_section_projects: "Key Projects",
+                pdf_footer_generated: "Curriculum Vitae",
                 hero_privacy_note: "Phone number is only visible in CV/PDF.",
                 hero_phone_pdf: "Contact phone: +52 8125150826",
                 hero_email_pdf: "Email: carlosgalvez9707@hotmail.com",
@@ -1091,6 +1113,14 @@
                 hero_call: "Llamar",
                 hero_whatsapp: "WhatsApp",
                 hero_email: "Correo",
+                hero_download_pdf: "Descargar CV (PDF)",
+                pdf_download_label: "Descargar CV en PDF",
+                pdf_title_role: "Ingeniero de Tecnologías de la Información",
+                pdf_section_profile: "Perfil",
+                pdf_section_experience: "Experiencia Profesional",
+                pdf_section_skills: "Habilidades Técnicas",
+                pdf_section_projects: "Proyectos Destacados",
+                pdf_footer_generated: "Curriculum Vitae",
                 hero_privacy_note: "El número solo es visible en la versión CV/PDF.",
                 hero_phone_pdf: "Teléfono de contacto: +52 8125150826",
                 hero_email_pdf: "Correo: carlosgalvez9707@hotmail.com",
@@ -1639,6 +1669,276 @@
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape" && chatOpen) {
                 setChatOpen(false);
+            }
+        });
+
+        function buildCvPdfData(lang) {
+            const dict = translations[lang];
+            return {
+                name: "Carlos Alberto Gálvez Chávez",
+                role: dict.pdf_title_role,
+                contact: [
+                    "+52 812 515 0826",
+                    "carlosgalvez9707@hotmail.com",
+                    "linkedin.com/in/carlos-galvez-b60430147",
+                    "github.com/CharlieJulio13"
+                ],
+                profile: [dict.about_p1, dict.about_p2],
+                skills: [
+                    { label: dict.skills_backend_title, items: ".NET Core, SQL Server, REST APIs" },
+                    { label: dict.skills_frontend_title, items: "Angular, JavaScript" },
+                    { label: dict.skills_other_title, items: "MongoDB, NopCommerce, ERP" }
+                ],
+                experience: [
+                    {
+                        role: dict.exp1_role,
+                        company: "Impulsora Elizondo",
+                        date: dict.exp1_date,
+                        bullets: [dict.exp1_li1, dict.exp1_li2, dict.exp1_li3, dict.exp1_li5]
+                    },
+                    {
+                        role: dict.exp2_role,
+                        company: "Banco Bancrea",
+                        date: dict.exp2_date,
+                        bullets: [dict.exp2_li1, dict.exp2_li2, dict.exp2_li6, dict.exp2_li8]
+                    },
+                    {
+                        role: dict.exp3_role,
+                        company: "Impulsora Elizondo",
+                        date: dict.exp3_date,
+                        bullets: [dict.exp3_li2, dict.exp3_li3, dict.exp3_li4, dict.exp3_li6]
+                    }
+                ],
+                projects: [
+                    {
+                        title: dict.proj1_title,
+                        meta: "Impulsora Elizondo · NopCommerce / .NET Core · elizondoenlinea.com",
+                        desc: dict.proj1_desc
+                    },
+                    {
+                        title: dict.proj2_title,
+                        meta: "Banco Bancrea · Angular / .NET Core · " + dict.proj_internal,
+                        desc: dict.proj2_desc
+                    },
+                    {
+                        title: dict.proj3_title,
+                        meta: "Impulsora Elizondo · REST APIs / " + (lang === "es" ? "portales web" : "web portals"),
+                        desc: dict.proj3_desc
+                    }
+                ],
+                footerLabel: dict.pdf_footer_generated,
+                sections: {
+                    profile: dict.pdf_section_profile,
+                    experience: dict.pdf_section_experience,
+                    skills: dict.pdf_section_skills,
+                    projects: dict.pdf_section_projects
+                }
+            };
+        }
+
+        function downloadCvPdf() {
+            if (!window.jspdf || !window.jspdf.jsPDF) {
+                window.print();
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: "mm", format: "a4" });
+            const data = buildCvPdfData(currentLang);
+
+            const pageW = 210;
+            const pageH = 297;
+            const marginX = 22;
+            const marginTop = 24;
+            const marginBottom = 24;
+            const contentW = pageW - marginX * 2;
+
+            const ink = [28, 28, 30];
+            const gray = [105, 105, 110];
+            const line = [205, 205, 208];
+
+            let y = marginTop;
+
+            function ensureSpace(height) {
+                if (y + height > pageH - marginBottom) {
+                    doc.addPage();
+                    y = marginTop;
+                }
+            }
+
+            function hairline(fromX, toX, atY) {
+                doc.setDrawColor(line[0], line[1], line[2]);
+                doc.setLineWidth(0.2);
+                doc.line(fromX, atY, toX, atY);
+            }
+
+            function sectionTitle(title) {
+                ensureSpace(16);
+                y += 4;
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(9);
+                doc.setTextColor(ink[0], ink[1], ink[2]);
+                doc.setCharSpace(1.1);
+                doc.text(title.toUpperCase(), marginX, y);
+                doc.setCharSpace(0);
+                y += 2.2;
+                hairline(marginX, pageW - marginX, y);
+                y += 6;
+            }
+
+            function paragraph(text, options) {
+                const settings = options || {};
+                const size = settings.size || 9.5;
+                const color = settings.color || ink;
+                const indent = settings.indent || 0;
+                const lineH = size * 0.48;
+
+                doc.setFont("helvetica", settings.style || "normal");
+                doc.setFontSize(size);
+                doc.setTextColor(color[0], color[1], color[2]);
+
+                const lines = doc.splitTextToSize(text, contentW - indent);
+                lines.forEach((textLine) => {
+                    ensureSpace(lineH);
+                    doc.text(textLine, marginX + indent, y);
+                    y += lineH;
+                });
+            }
+
+            // ---- Header ----
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(20);
+            doc.setTextColor(ink[0], ink[1], ink[2]);
+            doc.text(data.name, marginX, y);
+            y += 7;
+
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.setTextColor(gray[0], gray[1], gray[2]);
+            doc.setCharSpace(0.6);
+            doc.text(data.role.toUpperCase(), marginX, y);
+            doc.setCharSpace(0);
+            y += 5;
+
+            hairline(marginX, pageW - marginX, y);
+            y += 5;
+
+            doc.setFontSize(8.5);
+            doc.setTextColor(gray[0], gray[1], gray[2]);
+            doc.text(data.contact.join("   ·   "), marginX, y);
+            y += 4;
+
+            // ---- Profile ----
+            sectionTitle(data.sections.profile);
+            data.profile.forEach((text, index) => {
+                paragraph(text);
+                if (index < data.profile.length - 1) {
+                    y += 2;
+                }
+            });
+
+            // ---- Skills ----
+            sectionTitle(data.sections.skills);
+            const skillLabelW = 42;
+            data.skills.forEach((skill) => {
+                ensureSpace(6);
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(9.5);
+                doc.setTextColor(ink[0], ink[1], ink[2]);
+                doc.text(skill.label, marginX, y);
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(gray[0], gray[1], gray[2]);
+                doc.text(skill.items, marginX + skillLabelW, y);
+                y += 5.5;
+            });
+
+            // ---- Experience ----
+            sectionTitle(data.sections.experience);
+            data.experience.forEach((job, index) => {
+                ensureSpace(16);
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(10.5);
+                doc.setTextColor(ink[0], ink[1], ink[2]);
+                doc.text(job.role, marginX, y);
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(9);
+                doc.setTextColor(gray[0], gray[1], gray[2]);
+                doc.text(job.date, pageW - marginX, y, { align: "right" });
+                y += 4.6;
+
+                doc.setFont("helvetica", "italic");
+                doc.setFontSize(9.5);
+                doc.setTextColor(gray[0], gray[1], gray[2]);
+                doc.text(job.company, marginX, y);
+                y += 5.2;
+
+                job.bullets.forEach((bullet) => {
+                    const size = 9.5;
+                    const lineH = size * 0.48;
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(size);
+                    doc.setTextColor(ink[0], ink[1], ink[2]);
+                    const lines = doc.splitTextToSize(bullet, contentW - 6);
+                    lines.forEach((textLine, lineIndex) => {
+                        ensureSpace(lineH);
+                        if (lineIndex === 0) {
+                            doc.text("–", marginX + 1, y);
+                        }
+                        doc.text(textLine, marginX + 6, y);
+                        y += lineH;
+                    });
+                    y += 0.8;
+                });
+
+                if (index < data.experience.length - 1) {
+                    y += 3.5;
+                }
+            });
+
+            // ---- Projects ----
+            sectionTitle(data.sections.projects);
+            data.projects.forEach((project, index) => {
+                ensureSpace(14);
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(10);
+                doc.setTextColor(ink[0], ink[1], ink[2]);
+                doc.text(project.title, marginX, y);
+                y += 4.4;
+
+                doc.setFont("helvetica", "italic");
+                doc.setFontSize(8.5);
+                doc.setTextColor(gray[0], gray[1], gray[2]);
+                doc.text(project.meta, marginX, y);
+                y += 4.6;
+
+                paragraph(project.desc, { size: 9.5 });
+
+                if (index < data.projects.length - 1) {
+                    y += 3.5;
+                }
+            });
+
+            // ---- Footer on every page ----
+            const totalPages = doc.getNumberOfPages();
+            for (let page = 1; page <= totalPages; page += 1) {
+                doc.setPage(page);
+                hairline(marginX, pageW - marginX, pageH - 16);
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(7.5);
+                doc.setTextColor(gray[0], gray[1], gray[2]);
+                doc.text(`${data.name} — ${data.footerLabel}`, marginX, pageH - 11);
+                doc.text(`${page} / ${totalPages}`, pageW - marginX, pageH - 11, { align: "right" });
+            }
+
+            const langSuffix = currentLang === "es" ? "ES" : "EN";
+            doc.save(`Carlos-Galvez-CV-${langSuffix}.pdf`);
+        }
+
+        ["cv-pdf-download", "cv-pdf-download-hero"].forEach((id) => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener("click", downloadCvPdf);
             }
         });
 
